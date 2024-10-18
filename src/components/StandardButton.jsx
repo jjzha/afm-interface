@@ -1,24 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const StandardButton = ({ label, onClick }) => {
+const StandardButton = ({ label, onClick, disabled }) => {
 
   return (
-    <div>
-        <button name='standardbutton' onClick={ onClick } className='bg-primary-500 text-white text-sm font-light rounded-lg px-12 py-4 m-2 hover:scale-105'>
+
+        <button 
+          name='standardbutton' 
+          onClick={ onClick } 
+          disabled={ disabled } 
+          className='bg-primary-500 text-white text-sm font-light rounded-lg px-12 py-4 m-2 hover:scale-105
+           disabled:bg-primary-300 disabled:cursor-not-allowed disabled:scale-100'
+          >
             { label }
         </button>
-    </div>
   )
 }
 
 StandardButton.propTypes = {
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func,
+    disabled: PropTypes.bool,
 }
 
 StandardButton.defaultProps = {
     onClick: () => {},
+    disabled: false,
   };
 
 export default StandardButton
