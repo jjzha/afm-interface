@@ -1,124 +1,42 @@
+// src/pages/ChatPage.js
 import React, { useRef, useState, useEffect } from 'react';
 import CommonTextArea from '../components/CommonTextArea';
 import IconButton from '../components/IconButton';
-import MessageBubble from '../components/MessageBubble'; 
+import MessageBubble from '../components/MessageBubble';
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
-import ResponseMessage from '../components/ResponsMesssage';
+import ResponseMessage from '../components/ResponseMesssage';
+//import { postChatCompletions } from '../services/backend_api';  // Import the new API function
+import {  getRandomResponse } from '../services/mockResponses';  // Import the new utility function
 
 const ChatPage = () => {
-    const inputRef = useRef(null);  // Reference to textarea
-    const [chatPrompt, setChatPrompt] = useState('');  // Manages input value
-    const [isFocused, setIsFocused] = useState(false);  // Manages focus state
-    const [messages, setMessages] = useState([]);  // Store submitted messages
-    const [response, setResponse] = useState('');  // Store the streamed response
-    const [loading, setLoading] = useState(false);  // Manages loading state
-    const controllerRef = useRef(null);  // Ref for aborting fetch requests
+    const inputRef = useRef(null);
+    const [input, setInput] = useState("");
+    const [messages, setMessages] = useState([]);
+    const [response, setResponse] = useState("");
+    const [loading, setLoading] = useState(false);
 
-        // Handle keydown (submit on Enter, add new line with Shift+Enter)
-        const handleKeyDown = (e) => {
-            setIsFocused(true);
-    
-            if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                onSubmitData();  // Submit on Enter
-            }
-        };
-
-
-
-    // Handle change in input
-    const onChangeInput = (e) => {
-        setChatPrompt(e.target.value);
-    };
-
-    // Automatically focus the textarea when the component mounts
     useEffect(() => {
-        inputRef?.current?.focus();
+        inputRef.current?.focus();
     }, []);
 
-    // Handle submission
-    const onSubmitData = async () => {
-        if (chatPrompt.trim()) {
-            // Add the user's message to the list
-            const userMessage = { text: chatPrompt, isSender: true };
-            setMessages([...messages, userMessage]);
-            setChatPrompt('');  // Clear input after sending
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!input.trim()) return;
 
-            // Simulate API request to backend LLM
-            setLoading(true);
-            setResponse('');
-
-            // Abort any existing requests
-            if (controllerRef.current) {
-                controllerRef.current.abort();
-            }
-            const controller = new AbortController();
-            controllerRef.current = controller;
-
-            try {
-                const res = await fetch("/api/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        messages: [...messages, userMessage],
-                        model: "meta-llama/Llama-3.1-8B-Instruct",
-                        stream: true,
-                        max_tokens: 300,
-                        temperature: 0.7,
-                    }),
-                    signal: controller.signal,
-                });
-
-                if (!res.ok) throw new Error(`Server responded with ${res.status}`);
-
-                const reader = res.body.getReader();
-                const decoder = new TextDecoder("utf-8");
-
-                let assistantMessageContent = "";
-
-                // Read the response stream
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-
-                    const chunk = decoder.decode(value, { stream: true });
-                    const lines = chunk.split('\n').filter(line => line.trim() !== '');
-
-                    for (const line of lines) {
-                        if (line.startsWith('data:')) {
-                            const dataStr = line.replace(/^data: /, '');
-                            if (dataStr === '[DONE]') break;
-
-                            try {
-                                const data = JSON.parse(dataStr);
-                                const delta = data.choices[0].delta;
-                                if (delta && delta.content) {
-                                    assistantMessageContent += delta.content;
-                                    setResponse(prev => prev + delta.content);  // Update the response
-                                }
-                            } catch (err) {
-                                console.error('Error parsing chunk:', err);
-                            }
-                        }
-                    }
-                }
-
-                // After streaming is complete, store the assistant's message
-                const assistantMessage = { text: assistantMessageContent, isSender: false };
-                setMessages(prev => [...prev, assistantMessage]);
-            } catch (err) {
-                if (err.name === 'AbortError') {
-                    console.log('Fetch aborted');
-                } else {
-                    console.error("Error fetching LLM response:", err);
-                    setResponse(`Error: ${err.message}`);
-                }
-            } finally {
-                setLoading(false);
-                controllerRef.current = null;
-            }
+        setLoading(true);
+        setResponse("");
+        
+        const assistantMessageContent = getRandomResponse();  // Use the utility function to get a random response
+        const userMessage = { role: "user", content: input };
+        try {
+            //const { assistantMessageContent } = await postChatCompletions(messages, userMessage);
+            setMessages(prev => [...prev, userMessage, { role: "assistant", content: assistantMessageContent }]);
+            setResponse(assistantMessageContent);
+        } catch (error) {
+            setResponse(`Error: ${error.message}`);
+        } finally {
+            setLoading(false);
+            setInput("");  // Clear the input field after the chat interaction is complete
         }
     };
 
@@ -130,35 +48,28 @@ const ChatPage = () => {
                     <p className="text-sm mt-2">Start the chat by sending a message or uploading a file for me to review.</p>
                 </div>
             )}
-
-            {/* Message display area */}
-            <div className="w-full flex flex-col items-start space-y-4 mb-4 p-4 bg-gray-100 rounded-lg max-h-[400px] overflow-y-auto">
+            <div className="w-full flex flex-col items-start space-y-4 mb-4 p-4 bg-bg-100 rounded-lg max-h-[400px] overflow-y-auto">
                 {messages.map((message, index) => (
-                    <MessageBubble key={index} message={message.text} isSender={message.isSender} />
+                    <MessageBubble key={index} message={message.content} isSender={message.role === 'user'} />
                 ))}
-
-                {/* Display the assistant's response as it streams */}
-                {loading && <ResponseMessage response={response} loading={loading} />}
+                {loading && <ResponseMessage response={response} />}
             </div>
-
-             {/* Input area */}
-             <div className="w-full m-2 p-2 flex flex-row items-center justify-around">
+            <div className="w-full m-2 p-2 flex flex-row items-center justify-around">
                 <CommonTextArea
                     inputRef={inputRef}
-                    isFocused={isFocused}
-                    onChangeInput={onChangeInput}
-                    handleKeyDown={handleKeyDown}
-                    setIsFocused={setIsFocused}
-                    textBoxValue={chatPrompt}
+                    isFocused={input.length > 0}
+                    onChangeInput={(e) => setInput(e.target.value)}
+                    textBoxValue={input}
                     parentClassName="w-full m-2 p-2"
                     textAreaClassName="ask-question-input caret-raisinblack"
-                    placeHolder="Type your message here..."
+                    placeholder="Type your message here..."
+                    disabled={loading}
                 />
-
                 <IconButton
                     icon={PaperAirplaneIcon}
-                    className={'p-2 m-2'}
-                    onClick={onSubmitData}  // Trigger message sending on click
+                    className="p-2 m-2"
+                    onClick={handleSubmit}
+                    disabled={loading || input.trim() === ''}
                 />
             </div>
         </div>

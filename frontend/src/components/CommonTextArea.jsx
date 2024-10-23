@@ -6,7 +6,7 @@ const CommonTextArea = ({
   isFocused,
   onChangeInput,
   handleKeyDown,
-  setIsFocused,
+  //setIsFocused,
   textBoxValue,
   parentClassName,
   textAreaClassName,
@@ -41,7 +41,7 @@ const CommonTextArea = ({
         parentClassName,
         { "ask-question-input-focus": isFocused }  // Apply focus state
       )}
-      onClick={() => setIsFocused(true)}  // Set focus state on click
+      //onClick={() => setIsFocused(true)}  // Set focus state on click
     >
       <textarea
         id="text_area_input"
@@ -57,7 +57,7 @@ const CommonTextArea = ({
         )}
         placeholder={placeHolder}
         value={textBoxValue}
-        onClick={() => setIsFocused(true)}  // Set focus state on click
+        //onClick={() => setIsFocused(true)}  // Set focus state on click
         onKeyDown={handleKeyDown}  // Handle key down events
         onChange={onChangeInput}  // Update value on change
       />
