@@ -65,7 +65,7 @@ sudo usermod -aG docker $USER
 
 # Verify NVIDIA Docker installation
 echo "Verifying NVIDIA Docker installation..."
-sudo docker run --rm --gpus all vllm/vllm-openai:latest
+sudo docker run --rm --gpus all vllm/vllm-openai:v0.6.2
 
 # Prompt the user to reboot
 echo "Installation complete! Please reboot your system to apply all changes."

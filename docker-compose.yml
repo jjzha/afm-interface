@@ -1,6 +1,6 @@
 services:
   backend:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.6.2
     container_name: vllm-backend
     runtime: nvidia
     environment:
@@ -12,8 +12,9 @@ services:
     command:
       - "--model=meta-llama/Llama-3.2-3B-Instruct"
       - "--dtype=half"
-      - "--tensor_parallel_size=3"
+      - "--tensor_parallel_size=1"
       - "--trust-remote-code"
+      - "--max-model-len=4096"
     networks:
       - app-network
 
