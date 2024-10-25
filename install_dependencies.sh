@@ -15,10 +15,6 @@ sudo apt-get install -y build-essential dkms curl ca-certificates gnupg lsb-rele
 echo "Installing NVIDIA drivers..."
 sudo apt-get install -y nvidia-driver-535
 
-# Verify NVIDIA installation
-echo "Verifying NVIDIA installation..."
-nvidia-smi
-
 # Install Docker
 echo "Installing Docker..."
 
@@ -69,7 +65,7 @@ sudo usermod -aG docker $USER
 
 # Verify NVIDIA Docker installation
 echo "Verifying NVIDIA Docker installation..."
-sudo docker run --rm --gpus all vllm/vllm-openai:latest
+sudo docker run --rm --gpus all vllm/vllm-openai:v0.6.2
 
 # Prompt the user to reboot
 echo "Installation complete! Please reboot your system to apply all changes."
