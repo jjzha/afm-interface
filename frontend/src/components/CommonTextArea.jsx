@@ -37,8 +37,7 @@ const CommonTextArea = ({
   return (
     <div
       className={clsx(
-        "w-full", // Full width for alignment
-        parentClassName,
+        'm-2 p-2',
         { "ask-question-input-focus": isFocused }  // Apply focus state
       )}
       //onClick={() => setIsFocused(true)}  // Set focus state on click
@@ -47,7 +46,7 @@ const CommonTextArea = ({
         id="text_area_input"
         ref={inputRef}
         className={clsx(
-          "w-full max-h-80 rounded-lg p-3 text-sm font-light bg-primary-50 focus:outline-primary-50 focus:bg-bg-50",
+          "w-full max-h-80 rounded-lg p-3 text-xs md:text font-light bg-primary-50 focus:outline-primary-50 focus:bg-bg-50",
           textAreaClassName,
           "textarea_design",
           {
