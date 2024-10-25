@@ -36,7 +36,7 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/Llama-3.1-8B-Instruct", // Replace with your actual model name
+          model: "meta-llama/Llama-3.2-3B-Instruct", // Replace with your actual model name
           messages: updatedMessages,
           max_tokens: 300,
           temperature: 0.7,
