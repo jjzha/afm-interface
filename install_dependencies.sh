@@ -15,10 +15,6 @@ sudo apt-get install -y build-essential dkms curl ca-certificates gnupg lsb-rele
 echo "Installing NVIDIA drivers..."
 sudo apt-get install -y nvidia-driver-535
 
-# Verify NVIDIA installation
-echo "Verifying NVIDIA installation..."
-nvidia-smi
-
 # Install Docker
 echo "Installing Docker..."
 
