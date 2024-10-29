@@ -1,6 +1,6 @@
 import React from 'react'
-import whiteLogo from '../assets/AAU_HVID.png'
-import IconButton from './IconButton'
+import whiteLogo from '../public/assets/AAU_HVID.png'
+import IconButton from '../components/IconButton'
 import { PlusIcon, RectangleStackIcon } from '@heroicons/react/24/outline';
 
 const Header = () => {
