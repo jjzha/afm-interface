@@ -6,59 +6,41 @@ const CommonTextArea = ({
   isFocused,
   onChangeInput,
   handleKeyDown,
-  //setIsFocused,
   textBoxValue,
-  parentClassName,
   textAreaClassName,
-  placeHolder
+  placeHolder,
+  disabled,
 }) => {
-  const [scrollBar, setScrollBar] = useState(false);  // Tracks if scroll is needed
-  const maxHeight = 320;  // Maximum height for scrollbar
+  const [scrollBar, setScrollBar] = useState(false);
+  const maxHeight = 320;
 
-  // Adjust textarea height and scroll state
   useLayoutEffect(() => {
-    const textArea = inputRef.current ?? document.getElementById("text_area_input");
+    const textArea = inputRef.current;
 
     if (textArea) {
-      textArea.style.height = "0px";  // Reset height
+      textArea.style.height = "0px";
       const scrollHeight = textArea.scrollHeight;
-
-      textArea.style.height = Math.min(scrollHeight, maxHeight) + "px";  // Adjust based on content
-
-      // If the content is too large, show scrollbar
-      if (scrollHeight >= maxHeight) {
-        setScrollBar(true);
-      } else {
-        setScrollBar(false);
-      }
+      textArea.style.height = Math.min(scrollHeight, maxHeight) + "px";
+      setScrollBar(scrollHeight >= maxHeight);
     }
-  }, [inputRef, textBoxValue]);  // Re-run when ref or text value changes
+  }, [inputRef, textBoxValue]);
 
   return (
-    <div
-      className={clsx(
-        'm-2 p-2',
-        { "ask-question-input-focus": isFocused }  // Apply focus state
-      )}
-      //onClick={() => setIsFocused(true)}  // Set focus state on click
-    >
+    <div className={clsx("m-2 p-2", { "ask-question-input-focus": isFocused })}>
       <textarea
-        id="text_area_input"
         ref={inputRef}
         className={clsx(
-          "w-full max-h-80 rounded-lg p-3 text-xs md:text font-light bg-primary-50 focus:outline-primary-50 focus:bg-bg-50",
+          "w-full max-h-80 rounded-lg p-3 text-xs md:text font-light bg-test-bg focus:outline-primary-50 focus:bg-bg-50",
           textAreaClassName,
           "textarea_design",
-          {
-            "overflow-y-auto": scrollBar  // Add scrollbar if needed
-          },
-          "resize-none"  // Disable resizing
+          { "overflow-y-auto": scrollBar },
+          "resize-none"
         )}
         placeholder={placeHolder}
         value={textBoxValue}
-        //onClick={() => setIsFocused(true)}  // Set focus state on click
-        onKeyDown={handleKeyDown}  // Handle key down events
-        onChange={onChangeInput}  // Update value on change
+        onKeyDown={handleKeyDown}
+        onChange={onChangeInput}
+        disabled={disabled}
       />
     </div>
   );

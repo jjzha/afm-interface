@@ -23,8 +23,4 @@ MessageBubble.propTypes = {
   isUser: PropTypes.bool
 };
 
-MessageBubble.defaultProps = {
-  isUser: false
-};
-
 export default MessageBubble;
