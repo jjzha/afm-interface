@@ -1,10 +1,13 @@
 
 import '../styles/global.css';
+import Frame from '../layouts/Frame';
 
 
 function App({ Component, pageProps }) {
   return (
-    <Component {...pageProps} />
+    <Frame>
+      <Component {...pageProps} />
+    </Frame>
   );
 }
 

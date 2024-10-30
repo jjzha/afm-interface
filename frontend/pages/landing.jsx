@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import StandardButton from '../components/StandardButton'
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const LandingPage = () => {
 
@@ -21,9 +21,10 @@ const LandingPage = () => {
   // Step 3: Button should be enabled only if both checkboxes are checked
   const isButtonDisabled = !(isChecked1 && isChecked2);
 
-  const navigate = useNavigate();
+
+  const router = useRouter();
     const handleClick = () => { 
-        navigate('/demographics');
+        router.push('/demographics')
     };
 
 

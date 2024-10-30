@@ -1,11 +1,12 @@
 import React from 'react'
 import StandardButton from '../components/StandardButton'
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const DemographicsPage = () => {
-    const navigate = useNavigate();
+    const router = useRouter();
+    
     const handleClick = () => { 
-        navigate('/chat')
+        router.push('/chat')
     };
 
 

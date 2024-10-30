@@ -14,7 +14,8 @@ const InputBar = ({ inputRef, input, setInput, handleSubmit, loading }) => {
   };
 
   return (
-    <div className="w-full m-2 flex flex-row items-center justify-around">
+    <div className="w-full flex items-center justify-around p-2">
+      <div className="flex-1">
         <CommonTextArea
             inputRef={inputRef}
             isFocused={input.length > 0}
@@ -24,12 +25,15 @@ const InputBar = ({ inputRef, input, setInput, handleSubmit, loading }) => {
             disabled={loading}
             placeHolder="Type your message..."
         />
+        </div>
         <IconButton
             icon={PaperAirplaneIcon}
             onClick={handleSubmit}
             disabled={loading || input.trim() === ''}
             ariaLabel="Send message"
             className="p-2 m-2"
+            bgColor="bg-primary-50"
+            iconClassname="-rotate-45"
         />
     </div>
   );

@@ -23,11 +23,6 @@ StandardButton.propTypes = {
     disabled: PropTypes.bool,
 }
 
-StandardButton.defaultProps = {
-    onClick: () => {},
-    disabled: false,
-  };
-
 export default StandardButton
 
 

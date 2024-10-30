@@ -13,7 +13,7 @@ const MessageBubble = ({ message, isUser }) => {
         }
       )}
     >
-      <p className="text-xs md:text-sm">{message}</p>
+      <p className="text-xs lg:text-sm" >{message}</p>
     </div>
   );
 };

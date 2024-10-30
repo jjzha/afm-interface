@@ -1,5 +1,7 @@
 import { useLayoutEffect, useState } from "react";
+
 import clsx from "clsx";
+
 
 const CommonTextArea = ({
   inputRef,
@@ -8,7 +10,6 @@ const CommonTextArea = ({
   handleKeyDown,
   textBoxValue,
   textAreaClassName,
-  placeHolder,
   disabled,
 }) => {
   const [scrollBar, setScrollBar] = useState(false);
@@ -26,17 +27,16 @@ const CommonTextArea = ({
   }, [inputRef, textBoxValue]);
 
   return (
-    <div className={clsx("m-2 p-2", { "ask-question-input-focus": isFocused })}>
+    <div className= {clsx({ "ask-question-input-focus": isFocused })}>
       <textarea
         ref={inputRef}
         className={clsx(
-          "w-full max-h-80 rounded-lg p-3 text-xs md:text font-light bg-test-bg focus:outline-primary-50 focus:bg-bg-50",
+          "w-full max-h-80 rounded-lg p-3 text-xs font-light bg-primary-50 focus:outline-primary-50 focus:bg-bg-50",
           textAreaClassName,
           "textarea_design",
           { "overflow-y-auto": scrollBar },
           "resize-none"
         )}
-        placeholder={placeHolder}
         value={textBoxValue}
         onKeyDown={handleKeyDown}
         onChange={onChangeInput}
