@@ -18,7 +18,7 @@ const IconButton = ({
       onClick={onClick}
       aria-label={ariaLabel}
       className={clsx(
-        'flex items-center justify-center rounded-lg h-11 w-11 transition duration-200',
+        'flex items-center justify-center rounded-lg h-10 w-10 lg:h-11 lg:w-11 transition duration-200',
         bgColor,
         hoverBgColor,
         className,
@@ -30,7 +30,7 @@ const IconButton = ({
     >
       <Icon
         className={clsx(
-          "size-6",  // Fixed size for the icon
+          "size-5 stroke-2 lg:size-6 ",  // Fixed size for the icon
           iconColor,
           iconClassname  // Allowing additional rotation or styling classes
         )}

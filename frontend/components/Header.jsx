@@ -13,7 +13,8 @@ const Header = () => {
                 <p className='text-sm md:text-base lg:text-lg font-light'>Experimental Trial</p>
             </div>
                 <div className='px-4'>
-                    <img src="/assets/AAU_HVID.png" alt='AAU logo' style={{ height: '60px' }} />
+                    <Image src={whiteLogo} alt='AAU logo' height='60'  />
+
                 </div>
             </div>
             {/*  

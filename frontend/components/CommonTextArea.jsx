@@ -31,7 +31,7 @@ const CommonTextArea = ({
       <textarea
         ref={inputRef}
         className={clsx(
-          "w-full max-h-80 rounded-lg p-3 text-xs font-light bg-primary-50 focus:outline-primary-50 focus:bg-bg-50",
+          "w-full max-h-80 h-40 lg:h-44 rounded-lg p-3 text-xs lg:text-sm font-light bg-primary-50 focus:outline-primary-50 focus:bg-bg-50",
           textAreaClassName,
           "textarea_design",
           { "overflow-y-auto": scrollBar },
