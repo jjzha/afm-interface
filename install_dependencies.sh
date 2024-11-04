@@ -9,11 +9,20 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 # Install essential packages
 echo "Installing essential packages..."
-sudo apt-get install -y build-essential dkms curl ca-certificates gnupg lsb-release
+sudo apt-get install -y build-essential dkms curl ca-certificates gnupg lsb-release python3-pip ninja
 
-# Install NVIDIA drivers
-echo "Installing NVIDIA drivers..."
-sudo apt-get install -y nvidia-driver-535
+# Install NVIDIA cuda toolkit
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pinsudo 
+mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.0-535.54.03-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2204-12-2-local_12.2.0-535.54.03-1_amd64.deb
+sudo cp /var/cuda-repo-ubuntu2204-12-2-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cuda
+
+echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
 
 # Install Docker
 echo "Installing Docker..."
@@ -63,9 +72,9 @@ sudo systemctl restart docker
 # Add the current user to the Docker group
 sudo usermod -aG docker $USER
 
-# Verify NVIDIA Docker installation
-echo "Verifying NVIDIA Docker installation..."
-sudo docker run --rm --gpus all vllm/vllm-openai:v0.6.2
+# # Verify NVIDIA Docker installation
+# echo "Verifying NVIDIA Docker installation..."
+# sudo docker run --rm --gpus all vllm/vllm-openai:v0.6.2
 
 # Prompt the user to reboot
 echo "Installation complete! Please reboot your system to apply all changes."
