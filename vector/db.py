@@ -1,4 +1,4 @@
-# pip install chromadb ragatouille==0.2.19
+# pip install chromadb ragatouille==0.2.19 Ninja
 # pip uninstall --y faiss-cpu & pip install https://github.com/kyamagu/faiss-wheels/releases/download/v1.7.3/faiss_gpu-1.7.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whlpip3
 
 # echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
