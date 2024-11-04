@@ -1,25 +1,19 @@
-# pip install chromadb ragatouille==0.2.19 Ninja
-# pip uninstall --y faiss-cpu & pip install https://github.com/kyamagu/faiss-wheels/releases/download/v1.7.3/faiss_gpu-1.7.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whlpip3
-
-# echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
-# echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
-# source ~/.bashrc
-
 import chromadb
 from chromadb.config import Settings
 from chromadb.utils import embedding_functions
 
-from ragatouille import RAGPretrainedModel
+from sentence_transformers import SentenceTransformer
+
+import pprint
 
 
 def main():
-    RAG = RAGPretrainedModel.from_pretrained("colbert-ir/colbertv2.0", n_gpu=1)
     # client = chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
-                                        # persist_directory="db/"
-                                    # ))
-
-    # collection = client.create_collection(name="Moodle_AAU")
-
+    #                                     persist_directory="db/"
+    #                                 ))
+    client = chromadb.PersistentClient(path="~/afm-interface/vector")
+    emb_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")   
+    collection = client.create_collection(name="Moodle_AAU", embedding_function=emb_ef)
 
     student_info = """
     Alexandra Thompson, a 19-year-old computer science sophomore with a 3.7 GPA,
@@ -42,39 +36,18 @@ def main():
     including one of the largest library systems in the world.
     """
 
-    RAG.index(
-    # List of Documents
-    collection=[student_info, club_info, university_info],
-    # List of IDs for the above Documents
-    document_ids=["student", "club", "university"],
-    document_metadatas=[{}, {}, {}],
-    # Name of the index
-    index_name="Moodle_AAU",
-    # Chunk Size of the Document Chunks
-    max_document_length=256,
-    # Wether to Split Document or Not
-    split_documents=True,
-    use_faiss=True
+    collection.add(
+        documents = [student_info, club_info, university_info],
+        metadatas = [{"source": "student info"},{"source": "club info"},{'source':'university info'}],
+        ids = ["id1", "id2", "id3"]
     )
 
-    # collection.add(
-    #     documents = [student_info, club_info, university_info],
-    #     metadatas = [{"source": "student info"},{"source": "club info"},{'source':'university info'}],
-    #     ids = ["id1", "id2", "id3"]
-    # )
+    results = collection.query(
+        query_texts=["What is the size of University of Washington?"],
+        n_results=2
+    )
 
-    # results = collection.query(
-    #     query_texts=["What is the student name?"],
-    #     n_results=2
-    # )
-
-    # print(results)
-
-    results = RAG.search(query="How big is the University of Washington?", k=3, index_name='Moodle_AAU')
-    for i, doc, in enumerate(results):
-        print(f"---------------------------------- doc-{i} ------------------------------------")
-        print(doc["content"])
-
+    pprint.pprint(results)
 
 if __name__ == '__main__':
     main()

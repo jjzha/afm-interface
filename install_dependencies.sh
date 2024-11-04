@@ -77,4 +77,13 @@ sudo usermod -aG docker $USER
 # sudo docker run --rm --gpus all vllm/vllm-openai:v0.6.2
 
 # Prompt the user to reboot
-echo "Installation complete! Please reboot your system to apply all changes."
+echo "(Optional) Installation complete! Please reboot your system to apply all changes."
+
+
+# Install python-specific packages:
+echo "Installing python packages..."
+
+# Note that I installed cuda12.2
+pip3 install --user chromadb sentence_transformers
+pip3 uninstall -y torch
+pip3 install torch==2.5.0 --index-url https://download.pytorch.org/whl/cu121
