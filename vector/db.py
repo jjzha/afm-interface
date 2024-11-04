@@ -5,15 +5,12 @@ from chromadb.utils import embedding_functions
 from sentence_transformers import SentenceTransformer
 
 import pprint
-
+import os
 
 def main():
-    # client = chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",
-    #                                     persist_directory="db/"
-    #                                 ))
-    client = chromadb.PersistentClient(path="~/afm-interface/vector")
+    client = chromadb.PersistentClient(path="./.chroma")
     emb_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")   
-    collection = client.create_collection(name="Moodle_AAU", embedding_function=emb_ef)
+    collection = client.get_or_create_collection(name="Moodle_AAU", embedding_function=emb_ef)
 
     student_info = """
     Alexandra Thompson, a 19-year-old computer science sophomore with a 3.7 GPA,
@@ -36,14 +33,15 @@ def main():
     including one of the largest library systems in the world.
     """
 
-    collection.add(
-        documents = [student_info, club_info, university_info],
-        metadatas = [{"source": "student info"},{"source": "club info"},{'source':'university info'}],
-        ids = ["id1", "id2", "id3"]
-    )
+    if collection.count() == 0:
+        collection.add(
+            documents = [student_info, club_info, university_info],
+            metadatas = [{"source": "student info"},{"source": "club info"},{'source':'university info'}],
+            ids = ["id1", "id2", "id3"]
+        )
 
     results = collection.query(
-        query_texts=["What is the size of University of Washington?"],
+        query_texts=["Where can I find the nearest chess club?"],
         n_results=2
     )
 
