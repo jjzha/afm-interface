@@ -8,7 +8,8 @@ const IconButton = ({
   className = "", 
   bgColor = "bg-primary-50", 
   hoverBgColor = "hover:bg-primary-500",
-  iconColor = "text-primary-500 hover:text-primary-50",
+  iconColor = "text-primary-500",
+  hoverIconColor = "group-hover:text-primary-50", // Added group hover for icon
   ariaLabel, 
   disabled = false, 
   iconClassname = "",
@@ -22,17 +23,19 @@ const IconButton = ({
         bgColor,
         hoverBgColor,
         className,
+        'group',  // Added 'group' for managing group-hover
         {
-          'cursor-not-allowed' : disabled,
+          'cursor-not-allowed': disabled,
         }
       )}
       disabled={disabled}
     >
       <Icon
         className={clsx(
-          "size-5 stroke-2 lg:size-6 ",  // Fixed size for the icon
+          "size-5 stroke-2 lg:size-6 transition duration-200",  // Ensure icon transitions smoothly
           iconColor,
-          iconClassname  // Allowing additional rotation or styling classes
+          hoverIconColor,  // Apply hover styles using group-hover
+          iconClassname
         )}
       />
     </button>
@@ -46,6 +49,7 @@ IconButton.propTypes = {
   bgColor: PropTypes.string,
   hoverBgColor: PropTypes.string,
   iconColor: PropTypes.string,
+  hoverIconColor: PropTypes.string,
   ariaLabel: PropTypes.string,
   disabled: PropTypes.bool,
   iconClassname: PropTypes.string,

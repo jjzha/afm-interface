@@ -19,7 +19,7 @@ services:
       - app-network
 
   frontend:
-    container_name: react-frontend
+    container_name: next-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -27,6 +27,8 @@ services:
       - backend
     ports:
       - "8080:80"  # Expose port 80 of the container on port 8080 of the host
+    env_file:
+      - ./frontend/.env
     networks:
       - app-network
 
