@@ -28,6 +28,21 @@ module.exports = {
           100: '#FAFAFB',
         },
       },
+      keyframes: {
+        'pulse-wave': {
+          '0%, 100%': {
+            transform: 'scale(1)',
+            opacity: '1',
+          },
+          '50%': {
+            transform: 'scale(1.5)',
+            opacity: '0.7',
+          },
+        },
+      },
+      animation: {
+        'pulse-wave': 'pulse-wave 1s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
