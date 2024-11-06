@@ -7,6 +7,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [useContext, setUseContext] = useState(true);
+  const [showAskButton, setShowAskButton] = useState(false);
 
   const handleToggleContext = () => {
     setUseContext(!useContext);
@@ -21,6 +22,7 @@ function App() {
     setMessages(updatedMessages);
     setInput("");
     setLoading(true);
+    setShowAskButton(false); // Hide button while generating response
 
     try {
       const res = await fetch("/api/v1/chat/completions", {
@@ -52,7 +54,7 @@ function App() {
       const chunks = assistantMessageContent.split("");
       for (let i = 0; i < chunks.length; i++) {
         currentText += chunks[i];
-        await new Promise((resolve) => setTimeout(resolve, 1)); // 1ms delay
+        await new Promise((resolve) => setTimeout(resolve, 1));
 
         setMessages((prevMessages) => {
           const updatedMessages = [...prevMessages];
@@ -60,6 +62,8 @@ function App() {
           return updatedMessages;
         });
       }
+
+      setShowAskButton(true); // Show button after response is complete
     } catch (err) {
       alert(`An error occurred: ${err.message}`);
     } finally {
@@ -74,10 +78,16 @@ function App() {
     }
   };
 
+  const handleNewQuestion = () => {
+    setMessages([]);
+    setShowAskButton(false);
+    setInput(""); // Clear the input
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>AAU Concierge v0.001</h1>
+        <img src="/AAU_AAUBL.png" alt="App Icon" className="app-icon" />
         <div className="chat-container">
           <form onSubmit={handleSubmit}>
             <textarea
@@ -85,10 +95,15 @@ function App() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Enter your prompt"
               rows={3}
-              disabled={loading}
+              disabled={loading || showAskButton}
               onKeyPress={handleKeyPress}
+              className={showAskButton ? "disabled-input" : ""}
             />
-            <button type="submit" disabled={loading || input.trim() === ""}>
+            <button
+              type="submit"
+              disabled={loading || input.trim() === "" || showAskButton}
+              className={showAskButton ? "disabled-button" : ""}
+            >
               {loading ? "Loading..." : "Send"}
             </button>
           </form>
@@ -118,6 +133,13 @@ function App() {
                 </div>
               </div>
             ))}
+            {showAskButton && (
+              <div className="new-question-container">
+                <button onClick={handleNewQuestion} className="ask-new-question">
+                  Ask Something Else
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </header>

@@ -23,14 +23,14 @@ h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: 60vh;
 }
 
 /* Form and Button Styles */
 form {
   display: flex;
   gap: 10px;
-  align-items: flex-start; /* Align items to the top */
+  align-items: flex-start;
   margin-bottom: 20px;
 }
 
@@ -41,11 +41,11 @@ textarea {
   font-size: 16px;
   border-radius: 5px;
   resize: none;
-  box-sizing: border-box; /* Ensure padding is included in height */
+  box-sizing: border-box;
 }
 
 button {
-  padding: 15px 20px; /* Increase padding to make button larger */
+  padding: 15px 20px;
   background-color: #303f9f;
   color: white;
   border: none;
@@ -56,11 +56,24 @@ button {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  height: 100%; /* Set height to match textarea naturally */
+  height: 100%;
 }
 
 button:disabled {
   background-color: #bbb;
+  cursor: not-allowed;
+}
+
+/* Disabled Input and Button Styles */
+.disabled-input {
+  background-color: #f0f0f0;
+  color: #a1a1a1;
+  cursor: not-allowed;
+}
+
+.disabled-button {
+  background-color: #bbb;
+  cursor: not-allowed;
 }
 
 /* Toggle Switch Styles */
@@ -133,6 +146,7 @@ input:checked + .slider:before {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .message {
@@ -147,7 +161,7 @@ input:checked + .slider:before {
   align-self: flex-end;
   background-color: #cce5ff;
   color: #004085;
-  text-align: left; /* Align text to the left */
+  text-align: left;
 }
 
 .message.assistant {
@@ -157,42 +171,39 @@ input:checked + .slider:before {
   text-align: left;
 }
 
-/* Styles to position content below the name label */
-.message strong {
-  display: block;
-  margin-bottom: 5px;
+.new-question-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.message.assistant strong {
-  font-weight: bold;
+button.ask-new-question {
+  padding: 10px 20px;
+  background-color: #303f9f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.message.assistant em {
-  font-style: italic;
+button.ask-new-question:hover {
+  background-color: #3c4fb5;
 }
 
-.message.assistant a {
-  color: #007acc;
-  text-decoration: underline;
+/* App.css */
+.app-icon {
+  width: 60px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 10px; /* Add space below the icon */
 }
 
-.message.assistant p {
-  margin: 5px 0;
-}
-
-.message.assistant ul {
-  padding-left: 20px;
-  list-style-type: disc;
-}
-
-.message.assistant ol {
-  padding-left: 20px;
-  list-style-type: decimal;
-}
-
-.message.assistant code {
-  background-color: #eaeaea;
-  padding: 2px 4px;
-  border-radius: 3px;
-  font-family: monospace;
+/* Optional: Center the icon and text */
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
