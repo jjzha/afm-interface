@@ -1,33 +1,26 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import './App.css';
 
 function App() {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]); // Store the conversation history
-  const [response, setResponse] = useState("");
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [useContext, setUseContext] = useState(true);
 
-  // Ref to hold the AbortController for canceling fetch requests
-  const controllerRef = useRef(null);
+  const handleToggleContext = () => {
+    setUseContext(!useContext);
+  };
 
-  // Function to handle API request to the backend LLM
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setResponse("");
+    if (loading || input.trim() === "") return;
 
-    // Abort any existing requests
-    if (controllerRef.current) {
-      controllerRef.current.abort();
-    }
-
-    // Create a new AbortController for the new request
-    const controller = new AbortController();
-    controllerRef.current = controller;
-
-    // Add the user's message to the conversation history
     const userMessage = { role: "user", content: input };
     const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+    setInput("");
+    setLoading(true);
 
     try {
       const res = await fetch("/api/v1/chat/completions", {
@@ -36,106 +29,96 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/Llama-3.2-3B-Instruct", // Replace with your actual model name
+          model: "meta-llama/Llama-3.1-8B-Instruct",
           messages: updatedMessages,
-          max_tokens: 300,
+          max_tokens: 1000,
           temperature: 0.7,
-          n: 1,
-          stream: true, // Enable streaming
+          stream: false,
+          use_context: useContext,
         }),
-        signal: controller.signal, // Attach the AbortController signal
       });
 
       if (!res.ok) {
-        throw new Error(`Server responded with ${res.status}`);
+        const errorText = await res.text();
+        throw new Error(`Server responded with ${res.status}: ${errorText}`);
       }
 
-      // Handle streaming response
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder("utf-8");
-      let assistantMessageContent = ""; // To accumulate the assistant's response
+      const data = await res.json();
+      const assistantMessageContent = data.choices[0].message.content;
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
+      let currentText = "";
+      setMessages((prevMessages) => [...prevMessages, { role: "assistant", content: "" }]);
 
-        // Decode the chunk and split into lines
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split('\n').filter(line => line.trim() !== '');
+      const chunks = assistantMessageContent.split("");
+      for (let i = 0; i < chunks.length; i++) {
+        currentText += chunks[i];
+        await new Promise((resolve) => setTimeout(resolve, 1)); // 1ms delay
 
-        for (const line of lines) {
-          // Process lines that start with 'data:'
-          if (line.startsWith('data:')) {
-            const dataStr = line.replace(/^data: /, '');
-            if (dataStr === '[DONE]') {
-              // Stream finished
-              break;
-            } else {
-              try {
-                const data = JSON.parse(dataStr);
-                const delta = data.choices[0].delta;
-                if (delta && delta.content) {
-                  // Update the assistant's message content
-                  assistantMessageContent += delta.content;
-
-                  // Update the response with typing effect
-                  setResponse(prev => prev + delta.content);
-                }
-              } catch (err) {
-                console.error('Error parsing data chunk:', err);
-              }
-            }
-          }
-        }
+        setMessages((prevMessages) => {
+          const updatedMessages = [...prevMessages];
+          updatedMessages[updatedMessages.length - 1].content = currentText;
+          return updatedMessages;
+        });
       }
-
-      // After the streaming is done, add the assistant's message to the conversation history
-      const assistantMessage = { role: "assistant", content: assistantMessageContent };
-      setMessages(prev => [...prev, userMessage, assistantMessage]);
     } catch (err) {
-      if (err.name === 'AbortError') {
-        console.log('Fetch aborted');
-      } else {
-        console.error("Error fetching LLM response:", err);
-        setResponse(`Error: ${err.message}`);
-      }
+      alert(`An error occurred: ${err.message}`);
     } finally {
       setLoading(false);
-      controllerRef.current = null;
-      setInput(""); // Clear the input field
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
     }
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>LLM Test v0.1</h1>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter your prompt"
-            rows={5}
-            cols={50}
-            disabled={loading}
-          />
-          <br />
-          <button type="submit" disabled={loading || input.trim() === ""}>
-            {loading ? "Loading..." : "Send"}
-          </button>
-        </form>
+        <h1>AAU Concierge v0.001</h1>
+        <div className="chat-container">
+          <form onSubmit={handleSubmit}>
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Enter your prompt"
+              rows={3}
+              disabled={loading}
+              onKeyPress={handleKeyPress}
+            />
+            <button type="submit" disabled={loading || input.trim() === ""}>
+              {loading ? "Loading..." : "Send"}
+            </button>
+          </form>
 
-        <div className="conversation">
-          {messages.map((msg, index) => (
-            <div key={index} className={`message ${msg.role}`}>
-              <strong>{msg.role === 'user' ? 'You' : 'Assistant'}:</strong> {msg.content}
-            </div>
-          ))}
-          {loading && response && (
-            <div className="message assistant">
-              <strong>Assistant:</strong> {response}
-            </div>
-          )}
+          <div className="toggle-container">
+            <label className="toggle-label">Use Moodle Database</label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={useContext}
+                onChange={handleToggleContext}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+
+          <div className="conversation">
+            {messages.map((msg, index) => (
+              <div key={index} className={`message ${msg.role}`}>
+                <strong>{msg.role === 'user' ? 'You:' : 'Assistant:'}</strong>
+                <div className="message-content">
+                  {msg.role === 'assistant' ? (
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  ) : (
+                    <span>{msg.content}</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </header>
     </div>
