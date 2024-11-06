@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import './App.css';
 
 function App() {
@@ -126,7 +127,18 @@ function App() {
                 <strong>{msg.role === 'user' ? 'You:' : 'Assistant:'}</strong>
                 <div className="message-content">
                   {msg.role === 'assistant' ? (
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        a: ({ href, children }) => (
+                          <a href={href} target="_blank" rel="noopener noreferrer">
+                            {children}
+                          </a>
+                        ),
+                      }}
+                    >
+                      {msg.content}
+                    </ReactMarkdown>
                   ) : (
                     <span>{msg.content}</span>
                   )}
