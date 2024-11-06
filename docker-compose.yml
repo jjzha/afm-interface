@@ -10,13 +10,27 @@ services:
       - "8000:8000"
     ipc: host
     command:
-      - "--model=meta-llama/Llama-3.2-3B-Instruct"
+      - "--model=meta-llama/Llama-3.1-8B-Instruct"
       - "--dtype=half"
-      - "--tensor_parallel_size=3"
+      - "--tensor_parallel_size=4"
       - "--trust-remote-code"
-      - "--max-model-len=4096"
+      - "--max-model-len=8192"
     networks:
       - app-network
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: api-service
+    depends_on:
+      - backend
+    ports:
+      - "8001:8001"
+    networks:
+      - app-network
+    volumes:
+      - ./api/.chroma:/app/.chroma
 
   frontend:
     container_name: react-frontend
@@ -24,9 +38,9 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     depends_on:
-      - backend
+      - api
     ports:
-      - "8080:80"  # Expose port 80 of the container on port 8080 of the host
+      - "8080:80"
     networks:
       - app-network
 
