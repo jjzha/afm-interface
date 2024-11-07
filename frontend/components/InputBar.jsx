@@ -26,6 +26,7 @@ const InputBar = ({ inputRef, input, setInput, handleSubmit, loading }) => {
             placeHolder="Type your message..."
         />
         </div>
+        <div className="pb-1"> {/* add padding on this div for alignment?? */}
         <IconButton
             icon={PaperAirplaneIcon}
             onClick={handleSubmit}
@@ -35,6 +36,7 @@ const InputBar = ({ inputRef, input, setInput, handleSubmit, loading }) => {
             bgColor="bg-primary-50"
             iconClassname="-rotate-45"
         />
+        </div>
     </div>
   );
 }

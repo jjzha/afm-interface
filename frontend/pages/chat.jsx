@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import InputBar from '../components/InputBar';
 import MessageBubble from '../components/MessageBubble';
-import { getRandomResponse } from '../services/mockResponses';
 import { postChatCompletions } from '@services/chatService';
 import LoadDots from '@components/LoadDots';
+import EvaluationMode from '@components/EvaluationMode';
 
 const ChatPage = () => {
     const inputRef = useRef(null);
@@ -11,7 +11,9 @@ const ChatPage = () => {
     const [input, setInput] = useState("");
     const [allMessages, setAllMessages] = useState([]);
     const [isLoadingResponse, setIsLoadingResponse] = useState(false);
-    
+    const [errorMessage, setErrorMessage] = useState("");
+    const [streamingDone, setStreamingDone] = useState(false);
+
     const assistantStreamingResponseRef = useRef("");
     const [assistantStreamingResponse, setAssistantStreamingResponse] = useState("");
 
@@ -45,8 +47,9 @@ const ChatPage = () => {
         setInput("");
         assistantStreamingResponseRef.current = ""; // Clear the streaming response content ref
         setAssistantStreamingResponse("");          // Clear the response state as well
-
+        setErrorMessage("");                        // Clear any previous error messages
         setIsLoadingResponse(true);
+        setStreamingDone(false);
 
         try {
             // Convert messages to the expected format with 'role' and 'content'
@@ -75,17 +78,17 @@ const ChatPage = () => {
 
         } catch (error) {
             console.error("Error fetching LLM response:", error);
-            console.log("Falling back to mock response");
-            const fallbackMessage = { content: getRandomResponse(), isUser: false };
-            setAllMessages(prev => [...prev, fallbackMessage]);
+            setErrorMessage("An error occurred while fetching the response. Please try again.");  // Set error message
         } finally {
             setIsLoadingResponse(false);
             // After streaming ends, add the assistant message to the state
             if (assistantStreamingResponseRef.current) {
                 const assistantFinalMessage = { content: assistantStreamingResponseRef.current, isUser: false };
                 setAllMessages(prev => [...prev, assistantFinalMessage]);
+                setStreamingDone(true);
             }
         }
+
     };
 
     return (
@@ -113,8 +116,24 @@ const ChatPage = () => {
                         </div>
                     )}
 
+                    {/* Conditional rendering of the evaluation mode */}
+                    {streamingDone &&
+                        (
+                            <div className="flex flex-row space-x-2 p-2">
+                                <EvaluationMode evaluationName="Factuality" evaluationType="scale" />
+                                <EvaluationMode evaluationName="Appropriateness" evaluationType="thumbs" className="mt-8" />
+                            </div>
+                        )}
+
                     {/* Dummy div to ensure smooth scroll to the last message */}
                     <div ref={messagesEndRef}></div>
+                </div>
+            )}
+
+            {/* Display error message if there's an error */}
+            {errorMessage && (
+                <div className="w-full p-4 text-red-500 text-center">
+                    {errorMessage}
                 </div>
             )}
 
