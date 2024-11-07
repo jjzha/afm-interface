@@ -1,2 +1,3 @@
 api/.chroma
+.env*
 .env
