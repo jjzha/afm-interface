@@ -9,6 +9,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [useContext, setUseContext] = useState(true);
   const [showAskButton, setShowAskButton] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   const handleToggleContext = () => {
     setUseContext(!useContext);
@@ -24,6 +25,7 @@ function App() {
     setInput("");
     setLoading(true);
     setShowAskButton(false); // Hide button while generating response
+    setIsTyping(true); // Show typing indicator
 
     try {
       const res = await fetch("/api/v1/chat/completions", {
@@ -51,6 +53,9 @@ function App() {
 
       let currentText = "";
       setMessages((prevMessages) => [...prevMessages, { role: "assistant", content: "" }]);
+      
+      // Hide typing indicator before starting to display the response
+      setIsTyping(false);
 
       const chunks = assistantMessageContent.split("");
       for (let i = 0; i < chunks.length; i++) {
@@ -69,6 +74,7 @@ function App() {
       alert(`An error occurred: ${err.message}`);
     } finally {
       setLoading(false);
+      setIsTyping(false); // Ensure typing indicator is hidden
     }
   };
 
@@ -145,6 +151,13 @@ function App() {
                 </div>
               </div>
             ))}
+            
+            {isTyping && (
+              <div className="typing-indicator">
+                <span class="dots">Searching...</span>
+              </div>
+            )}
+
             {showAskButton && (
               <div className="new-question-container">
                 <button onClick={handleNewQuestion} className="ask-new-question">

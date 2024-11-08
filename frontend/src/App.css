@@ -207,3 +207,35 @@ button.ask-new-question:hover {
   flex-direction: column;
   align-items: center;
 }
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #555;
+  background-color: #d4edda;
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 80%;
+  align-self: flex-start;
+  margin: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.typing-indicator .dots {
+  display: inline-block;
+  margin-left: 5px;
+  animation: blink 1.4s infinite both;
+}
+
+@keyframes blink {
+  0%, 20% {
+    color: transparent;
+  }
+  40% {
+    color: #555;
+  }
+  100% {
+    color: transparent;
+  }
+}
