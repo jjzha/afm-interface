@@ -1,0 +1,48 @@
+/* globals.css */
+
+/* Basic Styling */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #303f9f;
+}
+
+h1 {
+  font-size: 24px;
+  color: #303f9f;
+  margin-bottom: 20px;
+}
+
+/* Global Button Styling */
+button {
+  padding: 15px 20px;
+  background-color: #303f9f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+button:disabled {
+  background-color: #bbb;
+  cursor: not-allowed;
+}
+
+/* Utility Classes */
+.disabled-input {
+  background-color: #f0f0f0;
+  color: #a1a1a1;
+  cursor: not-allowed;
+}
+
+.disabled-button {
+  background-color: #bbb;
+  cursor: not-allowed;
+}

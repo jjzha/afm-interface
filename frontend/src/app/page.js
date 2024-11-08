@@ -1,15 +1,23 @@
-import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import './App.css';
+// src/app/page.js
 
-function App() {
+"use client"; // This makes the component a client component
+
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import './app.css'; // Import your component-specific CSS here
+
+// Dynamically import ReactMarkdown and remarkGfm for client-side only rendering
+const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
+const remarkGfm = dynamic(() => import("remark-gfm"), { ssr: false });
+
+export default function Home() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [useContext, setUseContext] = useState(true);
   const [showAskButton, setShowAskButton] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+
 
   const handleToggleContext = () => {
     setUseContext(!useContext);
@@ -154,7 +162,7 @@ function App() {
             
             {isTyping && (
               <div className="typing-indicator">
-                <span class="dots">Searching...</span>
+                <span className="dots">Searching...</span>
               </div>
             )}
 
@@ -171,5 +179,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

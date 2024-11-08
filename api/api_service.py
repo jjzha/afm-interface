@@ -78,7 +78,7 @@ async def chat_completions(request: Request):
         llm_request = body | {"messages": augmented_messages, "stream": False}
         llm_request.pop("use_context", None)
 
-        backend_url = "http://backend:8000/v1/chat/completions"
+        backend_url = "http://vllm-api:8000/v1/chat/completions"
         headers = {"Content-Type": "application/json"}
 
         async with httpx.AsyncClient(timeout=120) as client:

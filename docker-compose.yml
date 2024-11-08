@@ -1,7 +1,7 @@
 services:
-  backend:
+  vllm-api:
     image: vllm/vllm-openai:v0.6.2
-    container_name: vllm-backend
+    container_name: vllm-api
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
@@ -18,13 +18,13 @@ services:
     networks:
       - app-network
 
-  api:
+  backend:
     build:
       context: ./api
       dockerfile: Dockerfile
-    container_name: api-service
+    container_name: fastapi-backend
     depends_on:
-      - backend
+      - vllm-api
     ports:
       - "8001:8001"
     networks:
@@ -33,14 +33,29 @@ services:
       - ./api/.chroma:/app/.chroma
 
   frontend:
-    container_name: react-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    container_name: nextjs-frontend
     depends_on:
-      - api
+      - backend
+    environment:
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:stable-alpine3.20
+    container_name: nginx-proxy
+    depends_on:
+      - frontend
+      - backend
     ports:
       - "8080:80"
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
     networks:
       - app-network
 

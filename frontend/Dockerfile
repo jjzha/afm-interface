@@ -1,36 +1,34 @@
-# Stage 1: Build the React app
+# Stage 1: Build the Next.js app
 FROM node:20.18.0-alpine AS build
 
+# Set the working directory
 WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install project dependencies
-RUN npm install 
-RUN npm install lucide-react react-markdown remark-gfm
+# Install project dependencies in one command
+RUN npm install --legacy-peer-deps
 
-# Copy the rest of the frontend source code
+# Copy the rest of the application source code
 COPY . .
 
-# Build the app
+# Build the Next.js app
 RUN npm run build
 
-# Stage 2: Serve the React app using Nginx
-FROM nginx:stable-alpine
+# Stage 2: Run the Next.js app
+FROM node:20.18.0-alpine
 
-# Remove default Nginx content and configuration
-RUN rm -rf /usr/share/nginx/html/* \
-    && rm /etc/nginx/conf.d/default.conf
+WORKDIR /app
 
-# Copy your custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/
+# Copy only necessary files from the build stage
+COPY --from=build /app/package.json /app/package-lock.json ./
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public 
 
-# Copy the build output to the Nginx html directory
-COPY --from=build /app/build /usr/share/nginx/html
+# Expose the Next.js port
+EXPOSE 3000
 
-# Expose port 80
-EXPOSE 80
-
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the Next.js server
+CMD ["npm", "start"]
