@@ -132,6 +132,15 @@
     word-wrap: break-word;
   }
   
+  .message-content a {
+    color: blue; /* Makes links blue */
+    text-decoration: underline; /* Adds underline for better visibility */
+  }
+  
+  .message-content a:hover {
+    color: darkblue; /* Optional: Makes links darker on hover */
+  }
+  
   .message.user {
     align-self: flex-end;
     background-color: #cce5ff;

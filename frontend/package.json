@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "next": "^13.4.0",
+    "next": "^14.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.0",
@@ -11,18 +11,25 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "lucide-react": "^0.147.0"  
+    "lucide-react": "^0.147.0",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.18"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-next": "^14.2.7",
+    "prettier": "^2.8.0"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "eslintConfig": {
-    "extends": [
-      "next/core-web-vitals"
-    ]
+    "extends": ["next/core-web-vitals"]
   },
   "browserslist": {
     "production": [
@@ -35,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
   }
 }

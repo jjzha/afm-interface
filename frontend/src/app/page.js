@@ -1,14 +1,9 @@
-// src/app/page.js
-
-"use client"; // This makes the component a client component
+"use client";
 
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import './app.css'; // Import your component-specific CSS here
-
-// Dynamically import ReactMarkdown and remarkGfm for client-side only rendering
-const ReactMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
-const remarkGfm = dynamic(() => import("remark-gfm"), { ssr: false });
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import './app.css';
 
 export default function Home() {
   const [input, setInput] = useState("");
@@ -18,6 +13,27 @@ export default function Home() {
   const [showAskButton, setShowAskButton] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
+  function linkify(text) {
+    const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([^\s]+@[^\s]+\.[^\s]+)/g;
+  
+    return text.split(urlRegex).map((part, index) => {
+      if (part.match(/https?:\/\/[^\s]+|www\.[^\s]+/)) {
+        const url = part.startsWith("http") ? part : `http://${part}`;
+        return (
+          <a key={index} href={url} target="_blank" rel="noopener noreferrer">
+            {part}
+          </a>
+        );
+      } else if (part.match(/[^\s]+@[^\s]+\.[^\s]+/)) {
+        return (
+          <a key={index} href={`mailto:${part}`} target="_blank" rel="noopener noreferrer">
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
+  }
 
   const handleToggleContext = () => {
     setUseContext(!useContext);
@@ -32,8 +48,8 @@ export default function Home() {
     setMessages(updatedMessages);
     setInput("");
     setLoading(true);
-    setShowAskButton(false); // Hide button while generating response
-    setIsTyping(true); // Show typing indicator
+    setShowAskButton(false);
+    setIsTyping(true);
 
     try {
       const res = await fetch("/api/v1/chat/completions", {
@@ -62,7 +78,6 @@ export default function Home() {
       let currentText = "";
       setMessages((prevMessages) => [...prevMessages, { role: "assistant", content: "" }]);
       
-      // Hide typing indicator before starting to display the response
       setIsTyping(false);
 
       const chunks = assistantMessageContent.split("");
@@ -77,12 +92,12 @@ export default function Home() {
         });
       }
 
-      setShowAskButton(true); // Show button after response is complete
+      setShowAskButton(true);
     } catch (err) {
       alert(`An error occurred: ${err.message}`);
     } finally {
       setLoading(false);
-      setIsTyping(false); // Ensure typing indicator is hidden
+      setIsTyping(false);
     }
   };
 
@@ -96,7 +111,7 @@ export default function Home() {
   const handleNewQuestion = () => {
     setMessages([]);
     setShowAskButton(false);
-    setInput(""); // Clear the input
+    setInput("");
   };
 
   return (
