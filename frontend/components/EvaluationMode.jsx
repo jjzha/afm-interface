@@ -3,12 +3,23 @@ import PropTypes from 'prop-types';
 import { ThumbDown, ThumbUp } from 'geist-icons';
 import clsx from 'clsx';
 
-const EvaluationMode = ({ evaluationName, evaluationType }) => {
+const EvaluationMode = ({ evaluationName, evaluationType, onChange }) => {
   // State to keep track of the user's selected value
   const [value, setValue] = useState(null);
 
+  const handleSelect = (val) => {
+    setValue(val);
+    if (onChange){
+      onChange(val); // Notify parent about the change
+    }
+  };
+
   return (
-    <div className="px-6 py-3 bg-primary-50 rounded-lg w-full max-w-md text-center text-primary-500">
+    <div className={clsx('px-5 py-2 rounded-lg w-full max-w-md text-center text-primary-500',
+      value === null ? 'border border-primary-500 bg-bg-50 font-medium' : 'border bg-primary-50'
+    )}
+      >
+
       <p className="text-xs mb-2">{evaluationName}</p>
 
       {evaluationType === 'scale' && (
@@ -38,7 +49,7 @@ const EvaluationMode = ({ evaluationName, evaluationType }) => {
               )}
             >
               <ThumbUp
-                size={16}
+                size={10}
                 
               />
             </div>
@@ -55,7 +66,7 @@ const EvaluationMode = ({ evaluationName, evaluationType }) => {
               )}
             >
               <ThumbDown
-                size={16}
+                size={10}
               />
             </div>
           </button>
