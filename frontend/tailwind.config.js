@@ -26,6 +26,7 @@ module.exports = {
         'bg': {
           50: '#FDFDFE',
           100: '#FAFAFB',
+          300: '#F4F4F6'
         },
       },
       keyframes: {

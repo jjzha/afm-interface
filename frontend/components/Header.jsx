@@ -7,7 +7,7 @@ import { PlusIcon, RectangleStackIcon } from '@heroicons/react/24/outline';
 import { useHeader } from '../contexts/HeaderContext';
 
 const Header = () => {
-    const { showNewChatButton, handleNewChat } = useHeader(); // Access handleNewChat from the context
+    const { showNewChatButton, handleNewChat, manageChatsHandler} = useHeader(); // Access handleNewChat from the context
 
     return (
         <div name='header' className='w-full inset-x-0 top-0 h-30 md:h-34 bg-primary-500 text-white '>
@@ -48,7 +48,7 @@ const Header = () => {
                     {showNewChatButton && (
                         <IconButton
                             icon={RectangleStackIcon}
-                            onClick={() => alert('Manage chats clicked')} // Update this if needed
+                            onClick={manageChatsHandler} // Update this if needed
                             ariaLabel="Manage chats"
                             bgColor="bg-transparent"
                             hoverBgColor="hover:bg-primary-50"

@@ -6,6 +6,9 @@ import LoadDots from '@components/LoadDots';
 import EvaluationMode from '@components/EvaluationMode';
 import chatConfig from '../interfaceConfig';
 import { useHeader } from '../contexts/HeaderContext';
+import SidePanel from '@components/SidePanel';
+import ChatHistory from '@components/ChatHistory';
+import clsx from 'clsx';
 
 
 const ChatPage = () => {
@@ -16,11 +19,20 @@ const ChatPage = () => {
     const [isLoadingResponse, setIsLoadingResponse] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [streamingDone, setStreamingDone] = useState(false);
-    const { setShowNewChatButton, setHandleNewChat } = useHeader(); // Access header context
+    const { setShowNewChatButton, setHandleNewChat, setManageChatsHandler } = useHeader(); // Access header context
+    const [isPanelVisible, setIsPanelVisible] = useState(false);
 
 
     const assistantStreamingResponseRef = useRef("");
     const [assistantStreamingResponse, setAssistantStreamingResponse] = useState("");
+
+     // Placeholder for chat history
+     const chatHistory = [
+        { title: "Feedback on Lorem Ipsum", timestamp: "Sept. 29. 12:45" },
+        { title: "Another chat", timestamp: "Sept. 27. 13:07" },
+        { title: "More example text", timestamp: "Sept. 22. 09:58" },
+        // Add more history items as needed
+      ];
 
     const lastSubmitTime = useRef(0);
 
@@ -29,12 +41,16 @@ const ChatPage = () => {
      useEffect(() => {
         setShowNewChatButton(true);
         setHandleNewChat(() => handleNewChat); // Set handleNewChat in the context
-
+    
+        // Setting a handler for the "Manage Chats" button
+        setManageChatsHandler(() => () => setIsPanelVisible(true)); // Open side panel on clicking Manage Chats
+    
         return () => {
             setShowNewChatButton(false); // Hide button when leaving the page
             setHandleNewChat(null);      // Clear the handler when leaving the page
+            setManageChatsHandler(null); // Clear the manage chats handler
         };
-    }, [setShowNewChatButton, setHandleNewChat]);
+    }, [setShowNewChatButton, setHandleNewChat, setManageChatsHandler]);
 
     // Focus on the input field when the component mounts
     useEffect(() => {
@@ -135,80 +151,74 @@ const ChatPage = () => {
     };
 
     return (
-        
-        <div className="w-full h-full flex flex-col items-center">   
- 
-            {/* Messages Section */}
-            {chatElements.length > 0 && (
-                <div className="w-full flex-1 flex flex-col items-start p-4 space-y-2 bg-bg-100 overflow-y-auto relative">
-                    {/* Spacer to push messages from the bottom */}
-                    <div className="flex-grow"></div>
-
-                    {/* Messages */}
-                    {chatElements.map((element, index) => {
-                        if (element.type === 'message') {
-                            // Render messages (user or assistant)
-                            return (
-                                <MessageBubble key={index} message={element.content} isUser={element.isUser} />
-                            );
-                        } else if (element.type === 'evaluation_block') {
-                            // Render evaluation block with all evaluations in a row
-                            return (
-                                <div key={index} className="flex flex-row space-x-2 p-2 items-center">
-                                    {element.evaluations.map((evaluation, i) => (
-                                        <EvaluationMode
-                                            key={i}
-                                            evaluationName={evaluation.name}
-                                            evaluationType={evaluation.evaluationType}
-                                        />
-                                    ))}
-                                </div>
-                            );
-                        }
-                    })}
-
-                    {/* Display the streaming response while it's loading */}
-                    {isLoadingResponse && assistantStreamingResponse && (
-                        <MessageBubble message={assistantStreamingResponse} isUser={false} />
+        <div className="relative w-full h-full">
+            {/* Main Content Wrapper with SidePanel */}
+            <div className="relative w-full h-full flex">
+                {/* Main Content Area with Conditional Blur */}
+                <div
+                    className={clsx(
+                        "w-full h-full flex flex-col items-center transition-all duration-300",
+                        isPanelVisible ? "" : ""
                     )}
-
-                    {/* Display the loading dots while the response is being streamed */}
-                    {isLoadingResponse && (
-                        <div className="p-2">
-                            <LoadDots />
+                >
+                    {/* Messages Section */}
+                    {chatElements.length > 0 && (
+                        <div className="w-full flex-1 flex flex-col items-start p-4 space-y-2 bg-bg-100 overflow-y-auto relative">
+                            <div className="flex-grow"></div>
+                            {chatElements.map((element, index) => {
+                                if (element.type === 'message') {
+                                    return (
+                                        <MessageBubble key={index} message={element.content} isUser={element.isUser} />
+                                    );
+                                } else if (element.type === 'evaluation_block') {
+                                    return (
+                                        <div key={index} className="flex flex-row space-x-2 p-2 items-center">
+                                            {element.evaluations.map((evaluation, i) => (
+                                                <EvaluationMode
+                                                    key={i}
+                                                    evaluationName={evaluation.name}
+                                                    evaluationType={evaluation.evaluationType}
+                                                />
+                                            ))}
+                                        </div>
+                                    );
+                                }
+                            })}
+                            <div ref={messagesEndRef}></div>
                         </div>
                     )}
 
+                    {/* Display error message if there's an error */}
+                    {errorMessage && (
+                        <div className="w-full p-4 text-red-500 text-center">
+                            {errorMessage}
+                        </div>
+                    )}
 
-                    {/* Dummy div to ensure smooth scroll to the last message */}
-                    <div ref={messagesEndRef}></div>
+                    {/* Placeholder Text */}
+                    {chatElements.length === 0 && (
+                        <div className="flex-1 w-2/3 flex flex-col items-center justify-center text-center text-tertiary-500 p-4">
+                            <p className="text-sm ">How can I help?</p>
+                            <p className="text-sm font-light mt-4">Start the chat by sending a message or uploading a file for me to review.</p>
+                        </div>
+                    )}
+
+                    <div className='w-full px-2'>
+                        <InputBar
+                            inputRef={inputRef}
+                            input={input}
+                            setInput={setInput}
+                            handleSubmit={handleSubmit}
+                            loading={isLoadingResponse}
+                        />
+                    </div>
                 </div>
-            )}
 
-            {/* Display error message if there's an error */}
-            {errorMessage && (
-                <div className="w-full p-4 text-red-500 text-center">
-                    {errorMessage}
-                </div>
-            )}
-
-            {/* Placeholder Text */}
-            {chatElements.length === 0 && (
-                <div className="flex-1 w-2/3 flex flex-col items-center justify-center text-center text-tertiary-500 p-4">
-                    <p className="text-sm ">How can I help?</p>
-                    <p className="text-sm font-light mt-4">Start the chat by sending a message
-                        or uploading a file for me to review.</p>
-                </div>
-            )}
-
-            <div className='w-full px-2'>
-                <InputBar
-                    inputRef={inputRef}
-                    input={input}
-                    setInput={setInput}
-                    handleSubmit={handleSubmit}
-                    loading={isLoadingResponse}
-                />
+                {/* Side Panel */}
+                <SidePanel isVisible={isPanelVisible} onClose={() => setIsPanelVisible(false)}>
+                    <h2 className="text-lg font-semibold mb-4">Chat History</h2>
+                    <ChatHistory chatHistory={chatHistory} />
+                </SidePanel>
             </div>
         </div>
     );
