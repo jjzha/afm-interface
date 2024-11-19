@@ -15,20 +15,13 @@ const SidePanel = ({ isVisible, onClose, children }) => {
       {/* Side Panel */}
       <div
         className={clsx(
-          'absolute top-0 right-0 w-80 h-full bg-white z-50 shadow-lg transition-transform duration-300',
+          'absolute top-0 right-0 w-2/3 h-full bg-bg-100 z-50 shadow-lg transition-transform duration-300',
           isVisible ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="p-4"
-        >
-          X
-        </button>
 
         {/* Content */}
-        <div className="p-4">
+        <div className="p-2">
           {children}
         </div>
       </div>

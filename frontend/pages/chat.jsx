@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import InputBar from '@components/InputBar';
 import MessageBubble from '@components/MessageBubble';
 import { postChatCompletions } from '@services/chatService';
+import Footer from '@components/Footer';
 import LoadDots from '@components/LoadDots';
 import EvaluationMode from '@components/EvaluationMode';
 import chatConfig from '../interfaceConfig';
@@ -9,6 +10,7 @@ import { useHeader } from '../contexts/HeaderContext';
 import SidePanel from '@components/SidePanel';
 import ChatHistory from '@components/ChatHistory';
 import clsx from 'clsx';
+
 
 
 const ChatPage = () => {
@@ -42,8 +44,8 @@ const ChatPage = () => {
         setShowNewChatButton(true);
         setHandleNewChat(() => handleNewChat); // Set handleNewChat in the context
     
-        // Setting a handler for the "Manage Chats" button
-        setManageChatsHandler(() => () => setIsPanelVisible(true)); // Open side panel on clicking Manage Chats
+ // Setting a handler for the "Manage Chats" button to toggle panel
+ setManageChatsHandler(() => () => setIsPanelVisible((prev) => !prev)); // Toggle side panel on clicking Manage Chats
     
         return () => {
             setShowNewChatButton(false); // Hide button when leaving the page
@@ -212,14 +214,18 @@ const ChatPage = () => {
                             loading={isLoadingResponse}
                         />
                     </div>
+                    < Footer />
                 </div>
 
                 {/* Side Panel */}
                 <SidePanel isVisible={isPanelVisible} onClose={() => setIsPanelVisible(false)}>
-                    <h2 className="text-lg font-semibold mb-4">Chat History</h2>
+                    <h2 className="text-base my-2 text-center text-primary-500">Chat History</h2>
                     <ChatHistory chatHistory={chatHistory} />
                 </SidePanel>
+
+               
             </div>
+             
         </div>
     );
 };

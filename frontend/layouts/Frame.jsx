@@ -11,7 +11,8 @@ const Frame = ({ children, showHeaderButtons, onNewChat }) => {
                 <div className='flex-1 w-full overflow-y-auto'>
                     {children}
                 </div>
-                <Footer />
+                {/* <Footer /> */}  
+                
             </div>
         </div>
     );
