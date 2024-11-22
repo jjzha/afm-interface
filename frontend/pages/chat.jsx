@@ -28,12 +28,17 @@ const ChatPage = () => {
     const assistantStreamingResponseRef = useRef("");
     const [assistantStreamingResponse, setAssistantStreamingResponse] = useState("");
 
-     // Placeholder for chat history
-     const chatHistory = [
-        { title: "Feedback on Lorem Ipsum", timestamp: "Sept. 29. 12:45" },
-        { title: "Another chat", timestamp: "Sept. 27. 13:07" },
-        { title: "More example text", timestamp: "Sept. 22. 09:58" },
-        // Add more history items as needed
+    const chatHistory = [
+        { title: "Feedback on Lorem Ipsum", timestamp: "2024-09-29T12:45:00" },
+        { title: "Another chat", timestamp: "2024-09-27T13:07:00" },
+        { title: "More example text", timestamp: "2024-09-22T09:58:00" },
+        { title: "Old Chat Example", timestamp: "2022-12-15T15:20:00" },
+        { title: "Meeting Notes", timestamp: "2023-08-14T11:32:00" },
+        { title: "Project Discussion", timestamp: "2023-07-10T10:00:00" },
+        { title: "Research Feedback", timestamp: "2023-06-05T14:23:00" },
+        { title: "Brainstorming Session", timestamp: "2023-05-20T16:45:00" },
+        { title: "Team Sync", timestamp: "2022-11-11T13:15:00" },
+        { title: "Client Feedback", timestamp: "2022-10-08T09:00:00" },
       ];
 
     const lastSubmitTime = useRef(0);
@@ -219,7 +224,7 @@ const ChatPage = () => {
 
                 {/* Side Panel */}
                 <SidePanel isVisible={isPanelVisible} onClose={() => setIsPanelVisible(false)}>
-                    <h2 className="text-base my-2 text-center text-primary-500">Chat History</h2>
+                    <h2 className="text-base font-medium my-2 text-center text-primary-500">CHAT HISTORY</h2>
                     <ChatHistory chatHistory={chatHistory} />
                 </SidePanel>
 

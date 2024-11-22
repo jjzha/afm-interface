@@ -14,7 +14,7 @@ const InputBar = ({ inputRef, input, setInput, handleSubmit, loading, disabled }
   };
 
   return (
-    <div className="w-full flex items-center justify-around p-2">
+    <div className="w-full flex items-center justify-around p-1">
       <div className="flex-1">
         <CommonTextArea
           inputRef={inputRef}
@@ -26,15 +26,15 @@ const InputBar = ({ inputRef, input, setInput, handleSubmit, loading, disabled }
           placeHolder="Type your message..."
         />
       </div>
-      <div className="pb-1"> {/* add padding on this div for alignment?? */}
+      <div className="mb-1"> {/* add padding on this div for alignment?? */}
         <IconButton
           icon={PaperAirplaneIcon}
           onClick={handleSubmit}
           disabled={loading || input.trim() === '' || disabled} // Use `disabled` prop to conditionally disable the button
           ariaLabel="Send message"
-          className="p-2 m-2"
+          className="m-2"
           bgColor="bg-primary-50"
-          iconClassname="-rotate-45"
+          iconClassname="-rotate-45 w-6 h-6"
         />
       </div>
     </div>
