@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState, useEffect } from 'react';
 import InputBar from '@components/InputBar';
 import MessageBubble from '@components/MessageBubble';
@@ -5,8 +7,8 @@ import { postChatCompletions } from '@services/chatService';
 import Footer from '@components/Footer';
 import LoadDots from '@components/LoadDots';
 import EvaluationMode from '@components/EvaluationMode';
-import chatConfig from '../interfaceConfig';
-import { useHeader } from '../contexts/HeaderContext';
+import chatConfig from '../../../interfaceConfig';
+import { useHeader } from '../../contexts/HeaderContext';
 import SidePanel from '@components/SidePanel';
 import ChatHistory from '@components/ChatHistory';
 import clsx from 'clsx';
@@ -39,19 +41,19 @@ const ChatPage = () => {
         { title: "Brainstorming Session", timestamp: "2023-05-20T16:45:00" },
         { title: "Team Sync", timestamp: "2022-11-11T13:15:00" },
         { title: "Client Feedback", timestamp: "2022-10-08T09:00:00" },
-      ];
+    ];
 
     const lastSubmitTime = useRef(0);
 
 
-     // Set header context to show "New Chat" button
-     useEffect(() => {
+    // Set header context to show "New Chat" button
+    useEffect(() => {
         setShowNewChatButton(true);
         setHandleNewChat(() => handleNewChat); // Set handleNewChat in the context
-    
- // Setting a handler for the "Manage Chats" button to toggle panel
- setManageChatsHandler(() => () => setIsPanelVisible((prev) => !prev)); // Toggle side panel on clicking Manage Chats
-    
+
+        // Setting a handler for the "Manage Chats" button to toggle panel
+        setManageChatsHandler(() => () => setIsPanelVisible((prev) => !prev)); // Toggle side panel on clicking Manage Chats
+
         return () => {
             setShowNewChatButton(false); // Hide button when leaving the page
             setHandleNewChat(null);      // Clear the handler when leaving the page
@@ -119,7 +121,7 @@ const ChatPage = () => {
                     assistantStreamingResponseRef.current += deltaContent;
 
                     // Set the response state to trigger re-render less frequently
-                    setAssistantStreamingResponse(assistantStreamingResponseRef.current);
+                    setAssistantStreamingResponse(prev => prev + deltaContent);
 
                     // Scroll to the bottom to follow the streamed response
                     scrollToBottom();
@@ -191,6 +193,22 @@ const ChatPage = () => {
                                     );
                                 }
                             })}
+
+                            {/* Display the streaming response while it's loading */}
+                            {isLoadingResponse && assistantStreamingResponse && (
+                                <MessageBubble message={assistantStreamingResponse} isUser={false} />
+                            )}
+
+                            {/* Display the loading dots while the response is being streamed */}
+                            {isLoadingResponse && (
+                                <div className="p-2">
+                                    <LoadDots />
+                                </div>
+                            )}
+
+
+                            {/* Dummy div to ensure smooth scroll to the last message */}
+
                             <div ref={messagesEndRef}></div>
                         </div>
                     )}
@@ -228,9 +246,9 @@ const ChatPage = () => {
                     <ChatHistory chatHistory={chatHistory} />
                 </SidePanel>
 
-               
+
             </div>
-             
+
         </div>
     );
 };

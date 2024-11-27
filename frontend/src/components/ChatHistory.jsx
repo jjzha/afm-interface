@@ -7,7 +7,7 @@ const ChatHistory = ({ chatHistory }) => {
     .reduce((acc, chat) => {
       const date = new Date(chat.timestamp);
       const year = date.getFullYear();
-      const month = date.toLocaleString('default', { month: 'long' });
+      const month = date.toLocaleString('en-US', { month: 'long' }); // Use specific locale for consistency
 
       if (!acc[year]) {
         acc[year] = {};
@@ -57,15 +57,13 @@ const ChatHistory = ({ chatHistory }) => {
                       {(() => {
                         const date = new Date(chat.timestamp);
                         const day = date.getDate().toString().padStart(2, '0'); // "29" - ensures it's always two digits
-                        const month = date.toLocaleString('default', { month: 'short' }).toLowerCase(); // "Aug." or "sep."
+                        const month = date.toLocaleString('en-US', { month: 'short' }).toLowerCase(); // "Aug." or "sep."
                         const hours = date.getHours().toString().padStart(2, '0'); // "12" - ensures it's always two digits
                         const minutes = date.getMinutes().toString().padStart(2, '0'); // "45" - ensures it's always two digits
 
-                        return `${month} ${day}. ${hours}:${minutes}`; // Constructs the final string: "29. Aug. 12:45"
+                        return `${day}. ${month}. ${hours}:${minutes}`; // Constructs the final string: "29. Aug. 12:45"
                       })()}
                     </div>
-
-
                   </div>
                 ))}
               </div>

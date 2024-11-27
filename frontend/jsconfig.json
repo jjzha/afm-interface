@@ -2,13 +2,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@layouts/*": ["layouts/*"],
-      "@pages/*": ["pages/*"],
-      "@services/*": ["services/*"],
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@services/*": ["src/services/*"],
       "@styles/*": ["styles/*"],
       "@public/*": ["public/*"]
     }
   },
-  "include": ["pages", "components", "layouts", "services", "styles", "public"]
+  "include": ["pages", "src/components", "src/layouts", "src/services", "styles", "public", "src/app/page.jsx", "src/app/layout.jsx"]
 }

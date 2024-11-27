@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ThumbDown, ThumbUp } from 'geist-icons';

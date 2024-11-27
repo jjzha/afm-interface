@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext, useState } from 'react';
 
 // Create the Header Context
@@ -9,7 +11,16 @@ export const HeaderProvider = ({ children }) => {
     const [manageChatsHandler, setManageChatsHandler] = useState(null);
 
     return (
-        <HeaderContext.Provider value={{ showNewChatButton, setShowNewChatButton, handleNewChat, setHandleNewChat, manageChatsHandler, setManageChatsHandler }}>
+        <HeaderContext.Provider
+            value={{
+                showNewChatButton,
+                setShowNewChatButton,
+                handleNewChat,
+                setHandleNewChat,
+                manageChatsHandler,
+                setManageChatsHandler
+            }}
+        >
             {children}
         </HeaderContext.Provider>
     );

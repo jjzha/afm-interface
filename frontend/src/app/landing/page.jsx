@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import StandardButton from '../components/StandardButton'
+import StandardButton from '../src/components/StandardButton'
 import { useRouter } from 'next/router';
 
 const LandingPage = () => {
