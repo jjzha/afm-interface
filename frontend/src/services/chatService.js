@@ -1,5 +1,5 @@
 // services/chatService.js
-const API_BASE_URL = 'http://130.225.37.98:8000/v1/chat';
+const API_BASE_URL = process.env.NEXT_PUBLIC_VLLM_API_BASE_URL;
 
 export const postChatCompletions = async (messages, userMessage, onStreamUpdate) => {
     try {
