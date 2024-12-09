@@ -1,6 +1,8 @@
+"use client";
+
 import React from 'react'
-import StandardButton from '../src/components/StandardButton'
-import { useRouter } from 'next/router';
+import StandardButton from '../../components/StandardButton'
+import { useRouter } from 'next/navigation';
 
 const DemographicsPage = () => {
     const router = useRouter();
