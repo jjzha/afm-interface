@@ -1,0 +1,37 @@
+[
+    {
+        "id": "Blocks_1",
+        "section": "Blocks",
+        "details": "<!-- image -->\n \n <!-- image -->\n \n - Dashboard\n - Calendar\n - CalMoodle\n \n Try logging in",
+        "source": "Machine Intelligence (MI) (DAT5, AAL-SW5, DV5, CS-IT7) [E22-44360]_ Information on the course _ Upgrade Moodle.md",
+        "student_id": "113967"
+    },
+    {
+        "id": "Blocks_2",
+        "section": "Blocks",
+        "details": "- \n - \n - \n - \n \n <!-- image -->\n \n <!-- image -->\n \n <!-- image -->\n \n - Home\n - Courses\n - Guest\n - Search\n - Help\n         \n \n                             Guides\n                         \n \n                             IT Support\n - Links\n         \n \n                             Zoom\n                         \n \n                             Microsoft Teams\n                         \n \n                             Aalborg University Library (AUB)\n                         \n \n                             Digital Exam\n \n - \n - Light Mode\n \n Dark Mode\n - 0\n         \n \n Notifications\n  \n \n You have no notifications\n \n                     See all\n                     \n \n There are 0 unread conversations\n 0\n - \n - AI\n \n A Imoodle-system@its.aau.dk\n \n ai-adminDashboard\n \n Profile\n \n \u00a0\n \n Grades\n \n Calendar\n \n Messages\n \n Private files\n \n Reports\n \n \u00a0\n \n Preferences\n \n Switch role to...\n \n \u00a0\n \n Log out\n \n 1. Dashboard\n 2. Courses\n 3. Technical Faculty of IT and Design\n 4. Department of Computer Science\n 5. Autumn 2022\n 6. Study Board of Computer Science\n 7. Courses\n 8. Machine Intelligence (MI) (DAT5, AAL-SW5, DV5, CS-IT7)\n 9. Sections\n 10. Semesters: DAT5/AAL-SW5/DV5/CS-IT7\n 11. Information on the course\n \n - Page\n - Settings\n - Filters\n - Permissions\n - Logs\n - Backup\n - Restore\n - Freeze this context\n - More",
+        "source": "Machine Intelligence (MI) (DAT5, AAL-SW5, DV5, CS-IT7) [E22-44360]_ Information on the course _ Upgrade Moodle.md",
+        "student_id": "113967"
+    },
+    {
+        "id": "Blocks_3",
+        "section": "Blocks",
+        "details": "<!-- image -->\n \n # Information on the course",
+        "source": "Machine Intelligence (MI) (DAT5, AAL-SW5, DV5, CS-IT7) [E22-44360]_ Information on the course _ Upgrade Moodle.md",
+        "student_id": "113967"
+    },
+    {
+        "id": "Blocks_4",
+        "section": "Blocks",
+        "details": "Description\n In this course I will give an introduction to machine intelligence and the construction of computational agents. During the course we will look at different ways of defining and constructing computational agents that are able to operate and reason in increasingly complex and sophisticated environments. Examples of such agents and environments include autonomous robots/vehicles, troubleshooting/diagnostic systems (both medical and mechanical), non-playing characters in computer games, trading agents, tutoring agents, recommender systems, i.e., agents recommending items that a user is likely to find interesting, credit scoring, etc.\n \n A common characteristic for these types of systems is that the agents' reasoning is based on a model of the world that is sufficiently formal to allow for algorithmic solution procedures to be defined. We will consider modeling frameworks that can represent different types of environments (ranging from e.g. deterministic domains to partially observable stochastic domains) as well as algorithmic approaches for solving problem domains represented using these frameworks. Keywords relevant for the course include constraint satisfaction problems, reasoning and planning under uncertainty, (reinforcement) learning, and multi-agent systems.\n \n After having followed the course you should\n \n - have knowledge about basic techniques within the field of machine intelligence and computational agents.\n - be able to apply key machine intelligence techniques to a specific problem domain.\n - be able to reason about computational agents that can operate in domains of varying complexity.\n \n The course will consist of 12 lectures with associated exercise sessions. Additionally, the course also includes extended exercise sessions of four hours each.\n \n The course will be based on the book Artificial Intelligence - Foundations of computational agents (Second edition) by David Poole and Alan K. Mackworth. The book is available electronically here, and the physical book is available for purchase at the University bookstore.",
+        "source": "Machine Intelligence (MI) (DAT5, AAL-SW5, DV5, CS-IT7) [E22-44360]_ Information on the course _ Upgrade Moodle.md",
+        "student_id": "113967"
+    },
+    {
+        "id": "Blocks_5",
+        "section": "Blocks",
+        "details": "- Contact ITS Support\n - Tel: +45 9940 2020\n - support@its.aau.dk\n \n AAU It services - Aalborg University \n www.its.aau.dk\n \n #### Settings\n \n #### Contacts\n \n - Contacts\n - Requests\n                                     \n 0\n There are 0 pending contact requests\n                                         0\n \n #### Personal space\n \n Save draft messages, links, notes etc. to access later.\n \n No starred conversations\n \n No group conversations\n \n No private conversations\n \n ##### Contacts\n \n ##### Non-contacts\n \n ##### Messages\n \n No results\n \n Search people and messages\n \n #### Privacy\n \n You can restrict who can message you\n \n ##### Notification preferences\n \n ##### General\n \n You have blocked this user.\n \n You are unable to message this user",
+        "source": "Machine Intelligence (MI) (DAT5, AAL-SW5, DV5, CS-IT7) [E22-44360]_ Information on the course _ Upgrade Moodle.md",
+        "student_id": "113967"
+    }
+]

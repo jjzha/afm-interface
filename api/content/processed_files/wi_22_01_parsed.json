@@ -1,0 +1,394 @@
+[
+    {
+        "id": "Web_1",
+        "section": "Web",
+        "details": "Lecture 1: Intro and Crawling",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Manfred_2",
+        "section": "Manfred",
+        "details": "<!-- image -->",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Logistics_3",
+        "section": "Logistics",
+        "details": "Lecture 1: Intro and Crawling\n \n 2 / 36\n \n Logistics\n \n Logistics",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "People_4",
+        "section": "People",
+        "details": "Lecturer: Manfred Jaeger jaeger@cs.aau.dk Teaching Assistant: Abiram Mohanaraj abiramm@cs.aau.dk",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Schedule_5",
+        "section": "Schedule",
+        "details": "Exercises: Mondays 12:30-14:15 in the group rooms\n \n Lectures: Mondays 14:30-16:15 NOVI 9\n \n Lectures: Mondays 14:30-16:15 NOVI 9\n \n Extended Exercises/Self-study: Wednesday mornings in the group rooms",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Exercises_6",
+        "section": "Exercises",
+        "details": "Regular exercises: smaller problems solved with pencil and paper (or whiteboard, or . . . )\n \n Self study exercises:\n \n - glyph[trianglerightsld] larger practical programming tasks using Python and Jupyter notebooks\n - glyph[trianglerightsld] closely aligned with exam topics\n - glyph[trianglerightsld] exam option: answer exam questions using your self study exercise notebooks\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 2 / 36\n \n Logistics\n \n Literature\n \n Main source for the first part of the course:\n \n Introduction to Information Retrieval by Christopher D. Manning, Prabhakar Raghavan and Hinrich Sch\u00fctze\n \n Full text online:\n \n https://nlp.stanford.edu/IR-book/information-retrieval-book.html\n \n Later parts of the course will depend more on single book chapters and/or research articles.\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 3 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Introduction_7",
+        "section": "Introduction",
+        "details": "Lecture 1: Intro and Crawling\n \n 4 / 36\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 4 / 36\n \n Introduction\n \n What is the Web?",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Number_8",
+        "section": "Number",
+        "details": "https://www.worldwidewebsize.com/\n \n World population: \u223c 8 billion.\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 5 / 36\n \n What is the Web?",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Multi_9",
+        "section": "Multi",
+        "details": "<!-- image -->",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "We_10",
+        "section": "We",
+        "details": "- glyph[trianglerightsld] Carries the most important information (in most cases)\n - glyph[trianglerightsld] Techniques used for dealing with text can be adapted to dealing with other types of data (cf. 'visual words' in computer vision).\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 6 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Introduction_11",
+        "section": "Introduction",
+        "details": "Intelligent ways to extract information and knowledge from the web:\n \n - glyph[trianglerightsld] finding relevant information available on the web\n - glyph[trianglerightsld] obtaining new knowledge by analyzing web data: the web itself, but also how it evolves, and how users interact on and with the web",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Some_12",
+        "section": "Some",
+        "details": "- glyph[trianglerightsld] Intelligent Search\n - glyph[trianglerightsld] Recommender Systems\n - glyph[trianglerightsld] Business Analytics\n - glyph[trianglerightsld] Crowd Sourcing\n - glyph[trianglerightsld] Not so nice ones: advertising, manipulation, surveillance\n \n A critical view:\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 7 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Query_13",
+        "section": "Query",
+        "details": "ecoemonofo Dacksuqe opere aichi Watching Turandot with Modern Eyes Opera Philadelphia Puccini coinposcd Turandol In 1924aahrle MulcnntoonchdInlenic(andIcy resnonsc tronthat olan udicnce member hom nincty yeais 000 ~Uon\n \n People also ask\n \n What is Turandot synopsis?\n \n aic UC questons Turando ? Wvi\n \n How much quranuor dia Puccini wtite?\n \n How do you Turaindoi?\n \n Wistor 0o Soic Modernism and the Machine Woman in Puccini's 'Turandot'\n \n Puccinrs luval Opeta wuthun Die conlex @ conteinporay devekoiens uqund Ihe (csons( no heroines Darbcula, DrovWesavilal Kry (o Wlson Cited by 16 Pclarodaricies\n \n wnwtheoperablog hatuol-cai-hrando: [eact What you said: Turandot reactions The Opera Blog Ju31 2015 Donttake ourmord heres harmeaudioncoandanncsare asom Singhhlmn; Puccini carvorms killcr vocals\n \n ooeramre com ,nO-nero-Khy-calat-(che-Oramalc-Or No Hero; Why Calaf Is The Dramatic Problem In Puccini's\n \n GLYPH<229> Close, but not quite the information I was looking for\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 8 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Query_14",
+        "section": "Query",
+        "details": "ennpediaoiq Ghotesi orolem Shortest[ problem Wikipedia Jumo (o Alqorithms qunpnIhtoY shorest path picoleinis (e uroucin Mrauvu path bctweun Ewo Veitices nodshinn graph such that the sum Delbon Single-source shortest paihs Al-dairs shonestoauns APP carons path\n \n enMhoedia orn kstra 5 eorihm Dijkstra' s algorithm Wikipedia\n \n Dikksira 5 anonthm Dijkstra s Shortest Path Fust alqorithm SPF alqorithm) is &n aiorig fuding shortest paths betwcen nodesapraph which may tcpresent Camo c ncions concered 5oTuier Sceoist EdsgerW Dijksua orang pubished ihree years laler Desciinuon Pchdocode Gofrednevs Hunnq DrIle\n \n aaaekerearcor sholesi Paln Aiqoiuuils Shortest Path Algorithms Tutorials Notes Algorithms\n \n Inne shonest path pioo em aboutnnuino path beiveen verbces a praph sucnthar the tonl sun ol the edges weighis Minumun prcblem could be solved eas ly using (BFS) d all weghs were ( ) but here wexhls can lake alty valy\n \n People also ask\n \n What are the shorrest path algonthms?\n \n Which bhe best shorlest palh agonlhin?\n \n How do you solve Dujkstra s shorlest palh algorithin?\n \n Does findihe shores: parh?\n \n Wngeexstorgeeks 0g Oiksuas-shonesl-par-aonil Dijkstra's shortest [ algorithm Greedy Algo-7 path\n \n GLYPH<229> Relevant and competent resources",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Looking_15",
+        "section": "Looking",
+        "details": "<!-- image -->",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Two_16",
+        "section": "Two",
+        "details": "- glyph[trianglerightsld] Product-based: 'similar' products (books)\n - glyph[trianglerightsld] User-based: what I may like (?)\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 9 / 36\n \n Introduction",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Suppose_17",
+        "section": "Suppose",
+        "details": "<!-- image -->\n \n Which of the pages are personal homepages , which are about educational programs , and which are about research projects ?\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 10 / 36\n \n Introduction",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Suppose_18",
+        "section": "Suppose",
+        "details": "<!-- image -->\n \n Which of the pages are personal homepages , which are about educational programs , and which are about research projects ?\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 10 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Suppose_19",
+        "section": "Suppose",
+        "details": "<!-- image -->\n \n Which of the pages are personal homepages , which are about educational programs , and which are about research projects ?\n \n - glyph[trianglerightsld] Prediction models based on a node's properties, the properties of its neighbors, the neighbors' neighbors, . . .\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 10 / 36\n \n Introduction\n \n How does a piece of gossip, a virus, a 'likes', a re-tweet, ..., spread over a network?\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 11 / 36\n \n Introduction\n \n How does a piece of gossip, a virus, a 'likes', a re-tweet, ..., spread over a network?\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 11 / 36\n \n Introduction\n \n How does a piece of gossip, a virus, a 'likes', a re-tweet, ..., spread over a network?\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 11 / 36\n \n Introduction\n \n How does a piece of gossip, a virus, a 'likes', a re-tweet, ..., spread over a network?\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 11 / 36\n \n Introduction\n \n How does a piece of gossip, a virus, a 'likes', a re-tweet, ..., spread over a network?\n \n <!-- image -->\n \n - glyph[trianglerightsld] Models for 'information diffusion'\n - glyph[trianglerightsld] Use for prediction of information spread, identification of effective 'seed nodes', . . .\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 11 / 36\n \n Introduction\n \n 3 Levels: Level 1\n \n We can distinguish 3 levels (perspectives) of modeling and analytics:",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Level_20",
+        "section": "Level",
+        "details": "The web as a collection of documents:\n \n <!-- image -->\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 12 / 36\n \n Introduction\n \n 3 Levels: Level 2",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Level_21",
+        "section": "Level",
+        "details": "The web as a network of documents:\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 13 / 36\n \n Introduction\n \n 3 Levels: Level 3",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Level_22",
+        "section": "Level",
+        "details": "The web as a dynamic network:\n \n <!-- image -->\n \n - glyph[trianglerightsld] Network evolution\n - glyph[trianglerightsld] Dynamic processes on the web\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 14 / 36\n \n Introduction\n \n 3 Levels: Level 3",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Level_23",
+        "section": "Level",
+        "details": "The web as a dynamic network:\n \n <!-- image -->\n \n - glyph[trianglerightsld] Network evolution\n - glyph[trianglerightsld] Dynamic processes on the web\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 14 / 36\n \n Introduction\n \n 3 Levels: Level 3",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Level_24",
+        "section": "Level",
+        "details": "The web as a dynamic network:\n \n <!-- image -->\n \n - glyph[trianglerightsld] Network evolution\n - glyph[trianglerightsld] Dynamic processes on the web\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 14 / 36\n \n Introduction\n \n 3 Levels: Level 3",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Level_25",
+        "section": "Level",
+        "details": "The web as a dynamic network:\n \n <!-- image -->\n \n - glyph[trianglerightsld] Network evolution\n - glyph[trianglerightsld] Dynamic processes on the web\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 14 / 36\n \n Introduction\n \n Relationship to scientific disciplines:\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 15 / 36\n \n Introduction",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Relationship_26",
+        "section": "Relationship",
+        "details": "<!-- image -->\n \n Lecture 1: Intro and Crawling\n \n 15 / 36\n \n Introduction",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Relationship_27",
+        "section": "Relationship",
+        "details": "<!-- image -->\n \n Network science: mostly based on a pure 'graph view' (nodes + edges) of networks.\n \n - GLYPH<229> Heterogeneous networks of 'multi-media nodes' still a source of many research challenges\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 15 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Web_28",
+        "section": "Web",
+        "details": "Lecture 1: Intro and Crawling\n \n 16 / 36\n \n Web Crawlers\n \n Web Data",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Before_29",
+        "section": "Before",
+        "details": "<!-- image -->\n \n Credits: clipart from pixabay.com\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 16 / 36\n \n Web Crawlers\n \n High-level Pseudo Code",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Skeleton_30",
+        "section": "Skeleton",
+        "details": "CRAWL(URL set: seeds )\n \n - 1 frontier = seeds\n - 2 while frontier glyph[negationslash] = \u2205 do\n - 3 url = get\\_url ( frontier )\n - 4 doc = fetch ( url )\n - 5 index ( doc )\n \n // select next URL from frontier // pages returned as html source text documents // send doc to indexer\n \n - 6 frontier.add ( extract\\_urls ( doc ))\n - 7 end\n \n Key design issue: the frontier of URLs to be processed, and selection strategy implementing get\\_url .\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 17 / 36\n \n The Frontier",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Two_31",
+        "section": "Two",
+        "details": "- glyph[trianglerightsld] frontier as stack. Leads to depth-first search. Problem: can get quickly stuck in 'dead end' remote corners of the web\n - glyph[trianglerightsld] frontier as queue. Leads to breadth-first search. Problem: slow progress, lacking politeness (see below)",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Both_32",
+        "section": "Both",
+        "details": "- glyph[trianglerightsld] A pure sequential, single thread architecture will get stuck once a host does not respond (quickly) to a fetch ( url ) request\n - glyph[trianglerightsld] Crawler must implement robustness : not get stuck in spider traps , i.e., large, dead-end (uninteresting) web components\n - glyph[trianglerightsld] Crawler must implement politeness : not overload a single web server with requests\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 18 / 36\n \n Web Crawlers",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Crawlers_33",
+        "section": "Crawlers",
+        "details": "- glyph[trianglerightsld] Periodic : maintain an up-to-date general picture of the web.\n - glyph[trianglerightsld] The same pages (URLs) should be re-visited periodically\n - glyph[trianglerightsld] Focused : map a part of the web pertaining to a particular topic",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Implemented_34",
+        "section": "Implemented",
+        "details": "- glyph[trianglerightsld] index ( doc ): maybe not every fetched document needs to be added to the index\n - glyph[trianglerightsld] frontier.add ( extract\\_urls ( doc )): extracted URLs may be added to the frontier with different priorities :\n - glyph[trianglerightsld] URLs that have already been recently visited have a lower priority (periodic crawling)\n - glyph[trianglerightsld] URLs that are less likely to refer to relevant pages have a lower priority (focused crawling)\n \n glyph[trianglerightsld]\n \n . . .\n \n Lecture 1: Intro and Crawling\n \n 19 / 36\n \n Web Crawlers\n \n Politeness\n \n - glyph[trianglerightsld] Minimum time delay between two requests to one host\n - glyph[trianglerightsld] Obey robots.txt file",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "robots_35",
+        "section": "robots",
+        "details": "Text file at top level of domain: http://domain.com/robots.txt . Provides instructions to crawlers.\n \n Don't allow any crawlers to go to /private/ directory:\n \n User-agent:\n \n Disallow:\n \n /private/\n \n Allow all crawlers all access, except googlebot is not allowed in /tmp/ :\n \n User-agent:\n \n Disallow:\n \n User-agent:\n \n googlebot\n \n Disallow:\n \n /tmp/\n \n Non-standard extension of robots.txt : request delay between successive visits:\n \n User-agent:\n \n bingbot\n \n Crawl-delay:\n \n 5\n \n The interpretation of the delay values can be crawler specific.\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 20 / 36\n \n *\n \n *\n \n Web Crawlers\n \n The Mercator Frontier\n \n Heydon, A., & Najork, M. (1999). Mercator: A scalable, extensible web crawler. World Wide Web, 2(4), 219-229.\n \n <!-- image -->\n \n Front queues\n \n : for prioritization\n \n Back queues\n \n : for politeness\n \n This and following slides: images derived from lecture slides of Chris Manning and Pandu Nayak\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 21 / 36\n \n Web Crawlers",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Fixed_36",
+        "section": "Fixed",
+        "details": "<!-- image -->\n \n - glyph[trianglerightsld] Incoming URLs are assigned a priority value between 1 and K , and enqueued in the corresponding front queue.\n - glyph[trianglerightsld] URLs are extracted by\n - glyph[trianglerightsld] Selecting (e.g. randomized) one of the front queues; higher priority queues are more likely to be selected\n - glyph[trianglerightsld] Dequeueing the head element from the selected queue\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 22 / 36\n \n Web Crawlers",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Fixed_37",
+        "section": "Fixed",
+        "details": "<!-- image -->\n \n - glyph[trianglerightsld] Each back queue contains URLs from only one host\n - glyph[trianglerightsld] Each queue/host has an entry in a priority queue (heap) that determines from which back queue the next URL will be extracted\n - glyph[trianglerightsld] Priority value: time stamp at which next request to host can be made at the earliest (following politeness policy)\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 23 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Getting_38",
+        "section": "Getting",
+        "details": "- glyph[trianglerightsld] Determine highest priority host\n - glyph[trianglerightsld] Dequeue head element from corresponding queue\n - glyph[trianglerightsld] Update priority value of host\n \n If queue of selected host becomes empty, re-fill back-queues from front queues as follows:\n \n - glyph[trianglerightsld] Get next URL url from front queues\n - glyph[trianglerightsld] If url 's host already has a back queue: enqueue there\n - glyph[trianglerightsld] Otherwise:\n - glyph[trianglerightsld] enqueue url in the empty queue\n - glyph[trianglerightsld] update heap and host dictionary\n - glyph[trianglerightsld] Repeat until queue non-empty\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 24 / 36\n \n Web Crawlers\n \n Distributed Crawling",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "In_39",
+        "section": "In",
+        "details": "- glyph[trianglerightsld] Each crawler has its own URL frontier\n - glyph[trianglerightsld] URLs are distributed over crawlers according to host: each crawler is responsible for a certain set of hosts (e.g. defined by a hash function, or geographically)\n - glyph[trianglerightsld] The\n \n frontier.add(extract\\_urls(doc))\n \n operation must add URLs to the frontier of the relevant crawler\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 25 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Duplicate_40",
+        "section": "Duplicate",
+        "details": "Lecture 1: Intro and Crawling\n \n 26 / 36\n \n Duplicate Identification\n \n Duplicate Content\n \n Many web-pages are duplicates or near-duplicates of other pages:\n \n - glyph[trianglerightsld] Mirrors\n - glyph[trianglerightsld] Identical product descriptions, user manuals, etc. contained on diverse web sites\n \n glyph[trianglerightsld]\n \n ...\n \n Estimate: as many as 40% of pages have duplicates [Manning et al., 2009]\n \n - GLYPH<229> May not want to include all duplicates in index\n \n GLYPH<229> The\n \n index(doc)\n \n operation may include a prior test whether doc is a (near-)duplicate of an already indexed page\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 26 / 36\n \n Duplicate Identification\n \n Textual Similarity\n \n Are these near duplicates?\n \n <!-- image -->\n \n <!-- image -->\n \n GLYPH<229> Will only consider the texts of the pages!",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Fingerprints_41",
+        "section": "Fingerprints",
+        "details": "If we wanted to detect identical texts, things would be relatively easy: construct a hash code\n \n text \u2192 64bit integers\n \n such that non-identical texts are unlikely to be mapped to the same integer (1 . 8 \u00b7 10 19 codes vs. \u223c 10 11 web documents).\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 27 / 36\n \n Duplicate Identification\n \n Shingles",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "k_42",
+        "section": "k",
+        "details": "We view text as a set of consecutive sequences of k words:\n \n we view text as a sequence of words we view text as view text as a text as a sequence as a sequence of a sequence of words",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "4_43",
+        "section": "4",
+        "details": "{ as a sequence of, a sequence of words, text as a sequence, view text as a, we view text as }\n \n - glyph[trianglerightsld] Order of occurrence of shingles is not included in representation\n - glyph[trianglerightsld] Number of occurrences of a shingle is not included in representation\n - glyph[trianglerightsld] Some pre-processing of raw html text before shingling (e.g.: ignore case, remove html tags)\n \n Assuming a fixed vocabulary of size N , there are N 4 different 4-shingles, and we can identify them with the integers 0 , . . . , N 4 -1.\n \n [Broder, Andrei Z., et al. \"Syntactic clustering of the web.\" Computer networks and ISDN systems 29.8-13 (1997): 1157-1166.]\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 28 / 36\n \n Duplicate Identification",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Jaccard_44",
+        "section": "Jaccard",
+        "details": "For any two finite sets A , B , define\n \n J ( A , B ) := | A \u2229 B | | A \u222a B |\n \n J ( A , B ) measures the overlap relative to the total size of the sets:\n \n <!-- image -->\n \n We measure the similarity of text documents d 1 , d 2 by the Jaccard coefficient of their shingle sets S ( d 1 ) , S ( d 2 ) .\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 29 / 36\n \n Duplicate Identification\n \n Naive Jaccard Computation\n \n Assume documents are represented by their (sorted) sets of shingle indices in 0 , . . . , N 4 -1:\n \n S ( d 1 ) :\n \n { 3 , 36 , 1834 , 1947 , . . . , 4982840 }\n \n S ( d 2 ) :\n \n { 18 , 54 , 1834 , 21895 , . . . , 5004298 }\n \n Naive way to compute | S ( d 1 ) \u2229 S ( d 2 ) | and | S ( d 1 ) \u2229 S ( d 2 ) | : step through both lists and count number of common entries and total number of distinct entries.\n \n Complexity: linear in the maximum length of the two documents.\n \n GLYPH<229> not good enough!\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 30 / 36\n \n Duplicate Identification\n \n Sketches I\n \n Estimating J ( S ( d 1 ) , S ( d 2 )) :\n \n - glyph[trianglerightsld] Let \u03c0 be a random permutation of the integers 0 , . . . , N 4 -1.\n - glyph[trianglerightsld] For j = 1 , 2: let x \u03c0 j := min { \u03c0 ( x ) : x \u2208 S ( d j ) }\n - GLYPH<229> Then:\n \n J ( S ( d 1 ) , S ( d 2 )) = P ( x \u03c0 1 = x \u03c0 2 ) ,\n \n where P is the probability over the selection of a random permutation \u03c0 .\n \n Lecture 1: Intro and Crawling\n \n 31 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Duplicate_45",
+        "section": "Duplicate",
+        "details": "Sketches I",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Estimating_46",
+        "section": "Estimating",
+        "details": "- glyph[trianglerightsld] Let \u03c0 be a random permutation of the integers 0 , . . . , N 4 -1.\n - glyph[trianglerightsld] For j = 1 , 2: let x \u03c0 j := min { \u03c0 ( x ) : x \u2208 S ( d j ) }\n - GLYPH<229> Then:\n \n J ( S ( d 1 ) , S ( d 2 )) = P ( x \u03c0 1 = x \u03c0 2 ) ,\n \n where P is the probability over the selection of a random permutation \u03c0 .\n \n Illustration (for simplicity: S ( d 1 ) \u222a S ( d 2 ) = { 1 , 2 , . . . , 14 } ):\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 31 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Duplicate_47",
+        "section": "Duplicate",
+        "details": "Sketches I",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Estimating_48",
+        "section": "Estimating",
+        "details": "- glyph[trianglerightsld] Let \u03c0 be a random permutation of the integers 0 , . . . , N 4 -1.\n - glyph[trianglerightsld] For j = 1 , 2: let x \u03c0 j := min { \u03c0 ( x ) : x \u2208 S ( d j ) }\n - GLYPH<229> Then:\n \n J ( S ( d 1 ) , S ( d 2 )) = P ( x \u03c0 1 = x \u03c0 2 ) ,\n \n where P is the probability over the selection of a random permutation \u03c0 .\n \n Illustration (for simplicity: S ( d 1 ) \u222a S ( d 2 ) = { 1 , 2 , . . . , 14 } ):\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 31 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Duplicate_49",
+        "section": "Duplicate",
+        "details": "Sketches I",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Estimating_50",
+        "section": "Estimating",
+        "details": "- glyph[trianglerightsld] Let \u03c0 be a random permutation of the integers 0 , . . . , N 4 -1.\n - glyph[trianglerightsld] For j = 1 , 2: let x \u03c0 j := min { \u03c0 ( x ) : x \u2208 S ( d j ) }\n - GLYPH<229> Then:\n \n J ( S ( d 1 ) , S ( d 2 )) = P ( x \u03c0 1 = x \u03c0 2 ) ,\n \n where P is the probability over the selection of a random permutation \u03c0 .\n \n Illustration (for simplicity: S ( d 1 ) \u222a S ( d 2 ) = { 1 , 2 , . . . , 14 } ):\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 31 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Duplicate_51",
+        "section": "Duplicate",
+        "details": "Sketches I",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Estimating_52",
+        "section": "Estimating",
+        "details": "- glyph[trianglerightsld] Let \u03c0 be a random permutation of the integers 0 , . . . , N 4 -1.\n - glyph[trianglerightsld] For j = 1 , 2: let x \u03c0 j := min { \u03c0 ( x ) : x \u2208 S ( d j ) }\n - GLYPH<229> Then:\n \n J ( S ( d 1 ) , S ( d 2 )) = P ( x \u03c0 1 = x \u03c0 2 ) ,\n \n where P is the probability over the selection of a random permutation \u03c0 .\n \n Illustration (for simplicity: S ( d 1 ) \u222a S ( d 2 ) = { 1 , 2 , . . . , 14 } ):\n \n <!-- image -->\n \n glyph[trianglerightsld]\n \n P ( x \u03c0 1 = x \u03c0 2 ) = probability that the minimum value min \u03c0 ( S ( d 1 ) \u222a S ( d 2 )) falls inside S ( d 1 ) \u2229 S ( d 2 ) = J ( S ( d 1 ) , S ( d 2 ))\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 31 / 36\n \n Duplicate Identification\n \n Sketches II\n \n One random permutation does not tell us much, so we take many, e.g.: \u03c0 1 , \u03c0 2 , . . . , \u03c0 200 .\n \n Then characterize every document d h by its feature vector\n \n \u03c8 ( d h ) := ( x \u03c0 1 h , . . . , x \u03c0 200 h ) ,\n \n called the sketch of d h :\n \n d\n \n d 1 d 2 . . . d h . . .\n \n 1965 32987 . . . 1965 . . .\n \n 20743 20743 . . . 984 . . .\n \n . . . . . . . . . . . . . . .\n \n 4975 11764 . . . 4975 . . .\n \n Now we can approximately estimate the Jaccard coefficient:\n \n J ( S ( d 1 ) , S ( d 2 )) \u2248 # equal components in \u03c8 ( d 1 ) and \u03c8 ( d 2 ) 200\n \n GLYPH<229> Complexity no longer depends on the lengths of the document.\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 32 / 36\n \n x \u03c0 1\n \n . . .\n \n x \u03c0 200\n \n \u03c8 ( d ) = x \u03c0 2\n \n Duplicate Identification\n \n Clustering Documents\n \n Given a collection of documents:\n \n <!-- image -->\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 33 / 36\n \n Duplicate Identification\n \n Clustering Documents\n \n Given a collection of documents:\n \n <!-- image -->\n \n Group documents into clusters , so that near-duplicates are in one cluster\n \n Supports:\n \n In order to show you the most relevant results; we have omitted some entries very similar to the 110 already displayed.\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 33 / 36\n \n If you like; you can repeat the search with the omitted results included.\n \n Duplicate Identification\n \n Clustering Documents\n \n Given a collection of documents:\n \n <!-- image -->\n \n Group documents into clusters , so that near-duplicates are in one cluster\n \n Supports:\n \n In order to show you the most relevant results; we have omitted some entries very similar to the 110 already displayed.\n \n If you like; you can repeat the search with the omitted results included.\n \n GLYPH<229> Caution: this does not mean that all documents in a cluster are near-duplicates!\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 33 / 36\n \n Duplicate Identification\n \n Clustering Documents\n \n Given a collection of documents:\n \n <!-- image -->\n \n Group documents into clusters , so that near-duplicates are in one cluster\n \n Supports:\n \n In order to show you the most relevant results; we have omitted some entries very similar to the 110 already displayed.\n \n If you like; you can repeat the search with the omitted results included.\n \n - GLYPH<229> Caution: this does not mean that all documents in a cluster are near-duplicates!\n - GLYPH<229> Will give useful results only if there are no long near-duplicate paths leading from one document to a totally different one\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 33 / 36\n \n Duplicate Identification\n \n A naive algorithm",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Naive_53",
+        "section": "Naive",
+        "details": "AGGSLC(Document set: { d 1 , . . . , d N } , Threshold t )\n \n - 1 Initialize union-find DS in which every d i is a singleton set\n - 2 for all pairs d i , d j do\n - 3 if J ( S ( d i ) , S ( d j )) > t then\n - 4 join the sets containing d i and d j\n - 5 end\n - 6 end\n - glyph[trianglerightsld] line 3: can be approximated using sketches\n - glyph[trianglerightsld] line 4: two find and (at most) one union operation\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 34 / 36\n \n Duplicate Identification\n \n A naive algorithm",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Naive_54",
+        "section": "Naive",
+        "details": "AGGSLC(Document set: { d 1 , . . . , d N } , Threshold t )\n \n - 1 Initialize union-find DS in which every d i is a singleton set\n - 2 for all pairs d i , d j do\n - 3 if J ( S ( d i ) , S ( d j )) > t then\n - 4 join the sets containing d i and d j\n - 5 end\n - 6 end\n - glyph[trianglerightsld] line 3: can be approximated using sketches\n - glyph[trianglerightsld] line 4: two find and (at most) one union operation\n - GLYPH<229> Complexity is \u0398( N 2 ) , which already is infeasible!\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 34 / 36\n \n Duplicate Identification\n \n A naive algorithm",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Naive_55",
+        "section": "Naive",
+        "details": "AGGSLC(Document set: { d 1 , . . . , d N } , Threshold t )\n \n - 1 Initialize union-find DS in which every d i is a singleton set\n - 2 for all pairs d i , d j do\n - 3 if J ( S ( d i ) , S ( d j )) > t then\n - 4 join the sets containing d i and d j\n - 5 end\n - 6 end\n - glyph[trianglerightsld] line 3: can be approximated using sketches\n - glyph[trianglerightsld] line 4: two find and (at most) one union operation\n - GLYPH<229> Complexity is \u0398( N 2 ) , which already is infeasible!\n - GLYPH<229> Basic strategy: filter out pairs d i , d j for which J ( S ( d i ) , S ( d j )) > t surely will not hold.\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 34 / 36\n \n Duplicate Identification\n \n Filtering with Sketches",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    },
+    {
+        "id": "Generate_56",
+        "section": "Generate",
+        "details": "GENPAIRS(Document set: { d 1 , . . . , d N } with sketches \u03c8 ( d h ) )\n \n - 1 for k=1,. . . ,200 do\n - 2 Generate all pairs \u3008 x \u03c0 k h , d h \u3009 ( h = 1 , . . . , N )\n - 3 Sort pairs on first component\n - 4 for each block in sorted list with same first component do\n - 5 return all pairs ( d h , d h ' ) of second components 6 end\n - 7 end\n - glyph[trianglerightsld] Not counting line 5 the complexity is O ( N log N )\n - glyph[trianglerightsld] Line 5 can still generate a large number of pairs (think of rather common shingles, e.g. 'this is not a')\n - glyph[trianglerightsld] The same pair ( d h , d h ' ) may be returned for different values of k .\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 35 / 36\n \n Is a newly crawled page a near duplicate of a document already in the index?\n \n <!-- image -->\n \n - glyph[trianglerightsld] Compute sketch \u03c8 ( d ) of new document\n - glyph[trianglerightsld] For each component x \u03c0 k of \u03c8 ( d ) : retrieve the documents d ' that have the same value for x \u03c0 k in their sketch as \u03c8 ( d )\n - glyph[trianglerightsld] Estimate J ( S ( d ) , S ( d ' )) based on sketches \u03c8 ( d ) , \u03c8 ( d ' )\n \n WI E22\n \n Lecture 1: Intro and Crawling\n \n 36 / 36",
+        "source": "wi_22_01.md",
+        "student_id": "95067"
+    }
+]

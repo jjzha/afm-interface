@@ -10,33 +10,21 @@ export default function Home() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [useContext, setUseContext] = useState(true);
+  const [selectedStudent, setSelectedStudent] = useState(""); // Default student ID
   const [showAskButton, setShowAskButton] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  function linkify(text) {
-    const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([^\s]+@[^\s]+\.[^\s]+)/g;
-  
-    return text.split(urlRegex).map((part, index) => {
-      if (part.match(/https?:\/\/[^\s]+|www\.[^\s]+/)) {
-        const url = part.startsWith("http") ? part : `http://${part}`;
-        return (
-          <a key={index} href={url} target="_blank" rel="noopener noreferrer">
-            {part}
-          </a>
-        );
-      } else if (part.match(/[^\s]+@[^\s]+\.[^\s]+/)) {
-        return (
-          <a key={index} href={`mailto:${part}`} target="_blank" rel="noopener noreferrer">
-            {part}
-          </a>
-        );
-      }
-      return part;
-    });
-  }
+  const students = [
+    { id: "95067", name: "Student 95067" },
+    { id: "113967", name: "Student 113967" },
+  ];
 
   const handleToggleContext = () => {
     setUseContext(!useContext);
+  };
+
+  const handleStudentChange = (e) => {
+    setSelectedStudent(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -58,12 +46,13 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/Llama-3.1-8B-Instruct",
+          model: "meta-llama/Llama-3.2-3B-Instruct",
           messages: updatedMessages,
           max_tokens: 1000,
-          temperature: 0.7,
+          temperature: 0.8,
           stream: false,
           use_context: useContext,
+          student_id: selectedStudent, // Explicitly include the student ID
         }),
       });
 
@@ -137,6 +126,25 @@ export default function Home() {
               {loading ? "Loading..." : "Send"}
             </button>
           </form>
+
+          <div className="dropdown-container">
+            <select
+              id="student-select"
+              value={selectedStudent}
+              onChange={handleStudentChange}
+              disabled={loading}
+              className="dropdown-select"
+            >
+              <option value="" disabled>
+                -- Choose a Student --
+              </option>
+              {students.map((student) => (
+                <option key={student.id} value={student.id}>
+                  {student.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           <div className="toggle-container">
             <label className="toggle-label">Use Moodle Database</label>

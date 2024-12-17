@@ -1,18 +1,16 @@
 services:
   vllm-api:
-    image: vllm/vllm-openai:v0.6.2
+    image: vllm/vllm-openai:v0.6.4.post1
     container_name: vllm-api
     runtime: nvidia
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all
       - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+      - NVIDIA_VISIBLE_DEVICES=all
     ports:
       - "8000:8000"
     ipc: host
     command:
-      - "--model=meta-llama/Llama-3.1-8B-Instruct"
-      - "--dtype=half"
-      - "--tensor_parallel_size=4"
+      - "--model=meta-llama/Llama-3.2-3B-Instruct"
       - "--trust-remote-code"
       - "--max-model-len=8192"
     networks:

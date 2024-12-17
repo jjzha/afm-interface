@@ -1,0 +1,86 @@
+[
+    {
+        "id": "A_1",
+        "section": "A",
+        "details": "Jeg føler mig stresset. Det lyder ikke rart 😞. Der kan være mange årsager til, at man føler sig stresset. På AAU skal du selv sørge for at strukturere og prioritere din tid, og når planlægningen halter, så kan det godt resultere i, at du føler dig både presset og stresset. Du kan læse mere om og få redskaber til det her: https://www.studerende.aau.dk/studieliv/studieteknik/find-din-studierytme. Hvis du gerne vil tale med en vejleder om din stress, så læs mere om dine muligheder her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_2",
+        "section": "A",
+        "details": "Hvordan får jeg tid til alt? På AAU er du ansvarlig for at strukturere din tid -- og det kan være nemmere sagt end gjort. Men et godt sted at starte kan være ved at danne dig et overblik over alle dine gøremål. Du kan finde redskaber til tidsstyring og prioritering her: https://www.studerende.aau.dk/studieliv/studieteknik/find-din-studierytme#b690e77c-99fe-43a7-aca4-868e98bc7d38. Hvis du gerne vil tale med en vejleder om tidsstyring, så læs mere her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_3",
+        "section": "A",
+        "details": "Hvordan forbereder jeg til min eksamen? Der er mange måder at forberede sig på, men det kan godt tage tid og afprøvning, før du finder frem til den måde, der fungerer bedst for dig. Du kan finde inspiration til din eksamensforberedelse her: https://www.studerende.aau.dk/studieliv/studieteknik/eksamensforberedelse. Hvis du gerne vil tale om eksamensforberedelse med en vejleder, læs mere her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_4",
+        "section": "A",
+        "details": "Hvorfor er jeg ikke motiveret? Motivation kan svinge meget og er påvirket af pres, stress, studietvivl, og andre faktorer. Du kan finde øvelser og redskaber til motivation her: https://www.studerende.aau.dk/studieliv/studieteknik/motivation-og-studietvivl/motivation-og-mindset. Du kan også tale med en vejleder om din motivation. Læs mere her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_5",
+        "section": "A",
+        "details": "Hvorfor kan jeg ikke tage mig sammen? Hvis du har svært ved at komme i gang, kan det skyldes lav motivation. Du kan finde redskaber til at arbejde med motivation og mindset her: https://www.studerende.aau.dk/studieliv/studieteknik/motivation-og-studietvivl/motivation-og-mindset. Hvis du hellere vil tale med en vejleder, kan du booke en samtale her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_6",
+        "section": "A",
+        "details": "Mistrivsel i gruppe: Hvad skal vi gøre, når vi ikke kan enes? Uenigheder og konflikter er svære at undgå. Du kan finde inspiration til gruppearbejde og håndtering af konflikter her: https://www.studerende.aau.dk/studieliv/studieteknik/inspiration-til-dit-gruppearbejde#konflikthåndtering-og-hjælpemuligheder. Hvis det er konfliktoptrappende, kan I få hjælp fra en vejleder. Læs mere her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_7",
+        "section": "A",
+        "details": "Min gruppe og jeg er i konflikt. Hvad skal vi gøre? Konflikter kan sjældent løses ved at undgå dem. I kan få hjælp til at facilitere en samtale gennem en vejleder. Læs mere om, hvordan I booker hjælp her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_8",
+        "section": "A",
+        "details": "Jeg tror jeg skal sygemeldes fra studiet, hvordan fungerer det? At blive sygemeldt betyder, at du kan få en tidsbestemt pause fra studiet pga. helbredsmæssige årsager. Læs mere om sygemelding her: https://www.studerende.aau.dk/regler/orlov-sygemelding-og-barsel.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_9",
+        "section": "A",
+        "details": "Hvad er forskellen på en sygemelding og en orlov? Som sygemeldt kan du stadig få SU og være studieaktiv, hvilket ikke er muligt på en orlov. Læs mere her: https://www.studerende.aau.dk/regler/orlov-sygemelding-og-barsel.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_10",
+        "section": "A",
+        "details": "Hvem skal jeg informere, hvis jeg ønsker at søge sygemelding? Informer både din studiesekretær og studienævnssekretær. Det er også en god idé at tale med din studievejleder om, hvordan du kommer i gang igen efter din sygemelding. Læs mere her: https://www.studerende.aau.dk/vejledning/studie-trivselsvejledning.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_11",
+        "section": "A",
+        "details": "Hvordan bliver jeg udmeldt fra AAU? Du kan selv udmelde dig via STADS Selvbetjening. Læs mere her: https://www.studerende.aau.dk/regler/udmeldelse-af-studie.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    },
+    {
+        "id": "A_12",
+        "section": "A",
+        "details": "Jeg har det ikke godt og føler mig presset og stresset. Der er flere ting, du kan gøre for at nedbringe dit stressniveau, fx mindfulness, faste studievaner, og sociale aktiviteter. Læs mere om støttetilbud her: https://www.studerende.aau.dk/studieliv/trivsels-og-stottetilbud-til-dig.",
+        "source": "AAU Questions",
+        "student_id": "global"
+    }
+]
