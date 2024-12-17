@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install project dependencies in one command
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps rehype-raw
 
 # Copy the rest of the application source code
 COPY . .

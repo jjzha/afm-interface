@@ -13,28 +13,6 @@ export default function Home() {
   const [showAskButton, setShowAskButton] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  function linkify(text) {
-    const urlRegex = /(https?:\/\/[^\s]+)|(www\.[^\s]+)|([^\s]+@[^\s]+\.[^\s]+)/g;
-  
-    return text.split(urlRegex).map((part, index) => {
-      if (part.match(/https?:\/\/[^\s]+|www\.[^\s]+/)) {
-        const url = part.startsWith("http") ? part : `http://${part}`;
-        return (
-          <a key={index} href={url} target="_blank" rel="noopener noreferrer">
-            {part}
-          </a>
-        );
-      } else if (part.match(/[^\s]+@[^\s]+\.[^\s]+/)) {
-        return (
-          <a key={index} href={`mailto:${part}`} target="_blank" rel="noopener noreferrer">
-            {part}
-          </a>
-        );
-      }
-      return part;
-    });
-  }
-
   const handleToggleContext = () => {
     setUseContext(!useContext);
   };
@@ -58,10 +36,9 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/Llama-3.1-8B-Instruct",
+          model: "Qwen/Qwen2-VL-2B-Instruct",
           messages: updatedMessages,
           max_tokens: 1000,
-          temperature: 0.7,
           stream: false,
           use_context: useContext,
         }),
@@ -74,10 +51,14 @@ export default function Home() {
 
       const data = await res.json();
       const assistantMessageContent = data.choices[0].message.content;
+      const sources = data.sources || []; // Capture sources
 
       let currentText = "";
-      setMessages((prevMessages) => [...prevMessages, { role: "assistant", content: "" }]);
-      
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { role: "assistant", content: "", sources }, // Append sources here
+      ]);
+
       setIsTyping(false);
 
       const chunks = assistantMessageContent.split("");
@@ -132,7 +113,6 @@ export default function Home() {
             <button
               type="submit"
               disabled={loading || input.trim() === "" || showAskButton}
-              className={showAskButton ? "disabled-button" : ""}
             >
               {loading ? "Loading..." : "Send"}
             </button>
@@ -156,25 +136,35 @@ export default function Home() {
                 <strong>{msg.role === 'user' ? 'You:' : 'Assistant:'}</strong>
                 <div className="message-content">
                   {msg.role === 'assistant' ? (
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        a: ({ href, children }) => (
-                          <a href={href} target="_blank" rel="noopener noreferrer">
-                            {children}
-                          </a>
-                        ),
-                      }}
-                    >
-                      {msg.content}
-                    </ReactMarkdown>
+                    <>
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                      >
+                        {msg.content}
+                      </ReactMarkdown>
+                      {msg.sources && msg.sources.length > 0 && (
+                        <div className="source-metadata">
+                          <h4>Source(s):</h4>
+                          <ul>
+                            {msg.sources.map((source, i) => (
+                              <li key={i}>
+                                <a href={source.path} target="_blank" rel="noopener noreferrer">
+                                  {source.path}
+                                </a>
+                                {/* {source.student && <span> (Student: {source.student})</span>} */}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <span>{msg.content}</span>
                   )}
                 </div>
               </div>
             ))}
-            
+
             {isTyping && (
               <div className="typing-indicator">
                 <span className="dots">Searching...</span>

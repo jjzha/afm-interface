@@ -1,13 +1,13 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-import chromadb
-from chromadb.utils import embedding_functions
+from byaldi import RAGMultiModalModel
+from pprint import pprint
 import httpx
 import logging
 import json
-import sys
 import os
+import sys
 
 app = FastAPI()
 
@@ -15,7 +15,7 @@ app = FastAPI()
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-    handlers=[logging.StreamHandler(sys.stdout)]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger("api_service")
 
@@ -28,73 +28,100 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize ChromaDB client
-client = chromadb.PersistentClient(path="./.chroma")
-emb_fn = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="BAAI/bge-m3")
-collection = client.get_or_create_collection(name="Moodle_AAU", embedding_function=emb_fn)
+# Global variable to store RAG instance
+RAG = None
 
-# Load course data on startup
 @app.on_event("startup")
 async def startup_event():
-    if collection.count() == 0:
-        # Iterate through all .json files in the assets directory
-        for file_name in os.listdir("./assets"):
-            if file_name.endswith(".json"):
-                file_path = os.path.join("./assets", file_name)
-                
-                # Load JSON data from each file
-                with open(file_path, "r") as f:
-                    data = json.load(f)
-                
-                # Insert each entry into the collection
-                for item in data:
-                    collection.add(
-                        documents=[item["details"]],
-                        metadatas=[{"name": item.get("name"), "source": item["source"]}],
-                        ids=[item["id"]]
-                    )
-                logger.info(f"Data from {file_name} loaded into ChromaDB")
+    global RAG
+    logger.info("Loading pre-built index...")
+    
+    # Load the model and index
+    rag_instance = RAGMultiModalModel.from_pretrained("vidore/colqwen2-v1.0", verbose=1)
+    RAG = rag_instance.from_index("Moodle_AAU")
+    
+    logger.info("Pre-built index loaded successfully!")
 
 @app.post("/api/v1/chat/completions")
 async def chat_completions(request: Request):
+    global RAG
+    if RAG is None:
+        return JSONResponse(status_code=500, content={"error": "RAG instance is not initialized."})
+
     try:
         body = await request.json()
         use_context = body.get("use_context", True)
         messages = body["messages"]
         user_message = messages[-1]["content"]
+        new_payload_message = [{"role": "user", "content": [{"type": "text", "text": messages[-1]["content"]}]}]
+
         logger.info(f"User prompt: {user_message}")
 
         if use_context:
-            results = collection.query(query_texts=[user_message], n_results=10)
-            if not results["documents"]:
+            results = RAG.search(user_message, k=1)
+            # logger.info(pprint(results))
+
+            if not results:
                 return JSONResponse(status_code=404, content={"error": "No relevant documents found."})
 
-            context = "\n\n".join(results["documents"][0])[:4096]  # Trim context if needed
-            metadata = json.dumps(results["metadatas"][0])
+            # Extract source metadata
+            sources = []
+            for result in results:
+                source_metadata = {
+                    "path": result["metadata"][0].get("path"),
+                    "student": result["metadata"][0].get("student")
+                }
+                sources.append(source_metadata)
 
-            system_message = {
-                "role": "system",
-                "content": (
-                    "You are an AI assistant that provides helpful, accurate answers to the student's questions based on the provided context if relevant. If the answer is not contained within the context, respond by saying you do not know the information. Only pick the resources per JSON document context. Please also do NOT let the user know that you have the context. After giving your answer, include the source URL on a new line only if you have it, following this format exactly:"
-                    f"'\n\nSource: <enter source here>.' \n\nContext: {context}\n\nMetadata: {metadata}."
+                new_payload_message[0]["content"].append(
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{result['base64']}"
+                        }
+                    }
                 )
-            }
-            augmented_messages = [system_message] + messages
         else:
-            augmented_messages = messages
+            new_payload_message[0]["content"].append(
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": ""
+                        }
+                    }
+                )
+
+        system_message = {
+            "role": "system",
+            "content": (
+                "You are an AI assistant that provides helpful, accurate answers to the student's questions based on the provided context if relevant. Don't mention the new context."
+            )
+        }
+        augmented_messages = [system_message] + new_payload_message
 
         llm_request = body | {"messages": augmented_messages, "stream": False}
         llm_request.pop("use_context", None)
 
+        # Attach sources to the final response
         backend_url = "http://vllm-api:8000/v1/chat/completions"
         headers = {"Content-Type": "application/json"}
 
-        async with httpx.AsyncClient(timeout=120) as client:
-            resp = await client.post(backend_url, json=llm_request, headers=headers)
+        async with httpx.AsyncClient(timeout=120) as http_client:
+            resp = await http_client.post(backend_url, json=llm_request, headers=headers)
             if resp.status_code != 200:
                 return JSONResponse(status_code=resp.status_code, content={"error": resp.text})
 
-            return JSONResponse(status_code=200, content=resp.json())
+            data = resp.json()
+
+            if use_context:
+                data["sources"] = sources  # Include sources in the response
+            else:
+                data["sources"] = {
+                    "path": "",
+                    "student": ""
+                }
+
+            return JSONResponse(status_code=200, content=data)
     except Exception as e:
         logger.error(f"Unexpected error: {e}", exc_info=True)
         return JSONResponse(status_code=500, content={"error": "Internal server error."})

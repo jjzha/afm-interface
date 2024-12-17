@@ -9,7 +9,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 # Install essential packages
 echo "Installing essential packages..."
-sudo apt-get install -y build-essential dkms curl ca-certificates gnupg lsb-release python3-pip nvidia-driver-535
+sudo apt-get install -y build-essential dkms curl ca-certificates gnupg lsb-release python3-pip nvidia-driver-535 poppler-utils texlive pandoc
 
 # Install NVIDIA cuda toolkit
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin

@@ -1,36 +1,38 @@
 services:
-  vllm-api:
-    image: vllm/vllm-openai:v0.6.2
-    container_name: vllm-api
-    runtime: nvidia
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all
-      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
-    ports:
-      - "8000:8000"
-    ipc: host
-    command:
-      - "--model=meta-llama/Llama-3.1-8B-Instruct"
-      - "--dtype=half"
-      - "--tensor_parallel_size=4"
-      - "--trust-remote-code"
-      - "--max-model-len=8192"
-    networks:
-      - app-network
-
   backend:
     build:
       context: ./api
       dockerfile: Dockerfile
     container_name: fastapi-backend
-    depends_on:
-      - vllm-api
+    runtime: nvidia
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+      - NVIDIA_VISIBLE_DEVICES=0
     ports:
       - "8001:8001"
     networks:
       - app-network
     volumes:
-      - ./api/.chroma:/app/.chroma
+      - /api/.biyaldi:/api/.biyaldi
+
+  vllm-api:
+    image: vllm/vllm-openai:v0.6.4.post1
+    container_name: vllm-api
+    depends_on:
+      - backend
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=1
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN}
+    ports:
+      - "8000:8000"
+    ipc: host
+    command:
+      - "--model=Qwen/Qwen2-VL-2B-Instruct"
+      # - "--tensor_parallel_size=1"
+      - "--trust-remote-code"
+    networks:
+      - app-network
 
   frontend:
     build:

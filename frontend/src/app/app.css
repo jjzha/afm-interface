@@ -211,4 +211,26 @@
       color: transparent;
     }
   }
+
+  .source-metadata {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .source-metadata h4 {
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  .source-metadata ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+  }
+  
+  .source-metadata li {
+    margin-bottom: 5px;
+  }
   

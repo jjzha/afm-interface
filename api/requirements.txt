@@ -1,5 +1,5 @@
 fastapi
 uvicorn[standard]
 httpx
-chromadb
-sentence-transformers
+byaldi
+packaging
